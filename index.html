@@ -229,13 +229,22 @@
 	
 	
 <script>
-		mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FicmllbGFhZGFtY3p5ayIsImEiOiJjaWpldzV6ZncwMDA1dnhtNG56OGdhc2FvIn0.jW6mw1QLlMkBLgpAH0NXqA';
+	/*	mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FicmllbGFhZGFtY3p5ayIsImEiOiJjaWpldzV6ZncwMDA1dnhtNG56OGdhc2FvIn0.jW6mw1QLlMkBLgpAH0NXqA';
 		var map = new mapboxgl.Map({
 			container: 'map', // container id
 			style: 'mapbox://styles/gabrielaadamczyk/ciju9xk8100ggbmkvduy8nqgs', //hosted style id
 			center: [25.1, 60.25], // starting position - ZMIENIĆ
 			zoom: 8 // starting zoom
-		});
+		});*/
+		
+	
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FicmllbGFhZGFtY3p5ayIsImEiOiJjaWpldzV6ZncwMDA1dnhtNG56OGdhc2FvIn0.jW6mw1QLlMkBLgpAH0NXqA';
+	var map = new mapboxgl.Map({
+	    container: 'map',
+	    style: 'mapbox://styles/mapbox/streets-v8',
+	    zoom: 15,
+	    center: [25.1, 60.25]
+	});
 
 		var layerList = document.getElementById('sidebar');
 		var inputs = layerList.getElementsByTagName('input');
@@ -264,7 +273,7 @@
 		map.on('style.load', function () {
 			map.addSource('buildings', {
 				type: 'vector',
-				url: 'mapbox://gabrielaadamczyk/gabrielaadamczyk.dui0bi44'
+				url: 'mapbox://gabrielaadamczyk.dui0bi44'
 			});
 			map.addLayer({
 				'id': 'buildings',
@@ -278,10 +287,9 @@
 			});
 
 		});
-
 		
 		addLayer('Buildings', 'buildings');
-		addLayer('Roads', 'roads');
+	//	addLayer('Roads', 'roads');
 	  
 	  /*	var building = L.mapbox.tileLayer('gabrielaadamczyk.dui0bi44.buildings');
 		// add that layer to a map

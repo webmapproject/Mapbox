@@ -279,8 +279,15 @@
 
 		});
 
+		
 		addLayer('Buildings', 'buildings');
 		addLayer('Roads', 'roads');
+	  
+	  	var building = L.mapbox.tileLayer('gabrielaadamczyk.dui0bi44.buildings');
+		// add that layer to a map
+		building.addTo(map);
+		// remove that layer from a map
+		//map.removeLayer(carsLayer);
 	  
 		function addLayer(name, id) {
 			var link = document.createElement('a');

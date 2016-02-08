@@ -351,7 +351,7 @@
 				'type': 'fill',
 				'source': 'buildings',
 	//"Rakennusvuosi >= " + t[0] + " AND Rakennusvuosi <= " + t[1]// + " AND 'Käyttötarkoitus 1' IN (" + rakennustyyppi + ")"			
-				"filter": ["==", "Year_of_co", 2000],
+				"filter": ["Year_of_co < 2000"],//["==", "Year_of_co", 2000],
 				'paint': {
 					"fill-color": "#d44242"
 				},

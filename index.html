@@ -51,6 +51,8 @@
 		left:0;
 	}
 
+	
+	
     .sidebar {
         position: absolute;
         top: 0;
@@ -136,6 +138,52 @@
         background: #3074a4;
     }
 
+
+        @media screen and (max-width:549px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .ol-toggle-options {
+                z-index: 1000;
+                position: absolute;
+                right: 7px;
+                bottom: 3px;
+            }
+            /* .btn{padding:5px 11px;} */
+            div span:last-of-type {
+                display: block;
+            }
+        }
+
+
+        @media screen and (min-width: 550px) and (max-width:800px) {
+            h1 {
+                font-size: 30px;
+            }
+
+            .ol-toggle-options {
+                z-index: 1000;
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+            }
+        }
+        /* iso naytto */
+        @media screen and (min-width: 801px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .ol-toggle-options {
+                z-index: 1000;
+                position: absolute;
+                right: 10px;
+                bottom: 15px;
+            }
+	
+	
+	
 </style>
 </head>
 
@@ -222,9 +270,10 @@
 	    zoom: 13,
 	    center: [24.9424015570944, 60.18199466214881]
 	});
-
-//	function update(currentView, centercoords, maptype) {
- /*       google.maps.visualRefresh = true;
+	mapType = 'custom';
+	
+ 	function update(currentView, centercoords, maptype) {
+       google.maps.visualRefresh = true;
 
         var isMobile = (navigator.userAgent.toLowerCase().indexOf('android') > -1) ||
           (navigator.userAgent.match(/(iPod|iPhone|iPad|BlackBerry|Windows Phone|iemobile)/));
@@ -232,10 +281,154 @@
         if (isMobile) {
             var viewport = document.querySelector("meta[name=viewport]");
             viewport.setAttribute('content', 'initial-scale=1.0, user-scalable=no');
-        }*/
+		}
+	 
+		var mapDiv = document.getElementById('map');
+        mapDiv.style.width = isMobile ? '100%' : '100%';
+        mapDiv.style.height = isMobile ? '100%' : '100%';
+        if (maptype != 'custom') {
+            mapOptions = {
+                center: centercoords,
+                zoom: currentView,
+                mapTypeId: maptype
+            };
+        }
+		
+		var map2 = new mapboxgl.Map(mapDiv, mapOptions);
+        map = map2;
+        //map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('googft-legend-open'));
+        //map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('googft-legend'));
 
-	
-	
+        map.setZoom(currentView);
+
+        var t = slider.noUiSlider.get();
+
+/*        layer = new google.maps.FusionTablesLayer({
+            map: map,
+            heatmap: { enabled: false },
+            query: {
+                select: "col21",
+                from: "1Cjp5kwTFW1zb7rCRILUg6PryPwo_9RkkM4kD960",
+                where: "Rakennusvuosi >= " + t[0] + " AND Rakennusvuosi <= " + t[1]// + " AND 'Käyttötarkoitus 1' IN (" + rakennustyyppi + ")"
+            },
+            options: {
+                styleId: 1,
+                templateId: 2
+            }
+        }); */
+
+		
+
+        if (isMobile) {
+            var legend = document.getElementById('googft-legend');
+            var legendOpenButton = document.getElementById('googft-legend-open');
+            var legendCloseButton = document.getElementById('googft-legend-close');
+            legend.style.display = 'none';
+            legendOpenButton.style.display = 'block';
+            legendCloseButton.style.display = 'block';
+            legendOpenButton.onclick = function () {
+                legend.style.display = 'block';
+                legendOpenButton.style.display = 'none';
+            }
+            legendCloseButton.onclick = function () {
+                legend.style.display = 'none';
+                legendOpenButton.style.display = 'block';
+            }
+        }
+
+	}	
+		
+<!-- Adding layer -->
+		layer = map.on('style.load', function () {
+			map.addSource('buildings', {
+				type: 'vector',
+				url: 'mapbox://gabrielaadamczyk.dui0bi44'
+			});
+			map.addLayer({
+				'id': 'buildings',
+				"interactive": true,
+				'type': 'fill',
+				'source': 'buildings',
+	//"Rakennusvuosi >= " + t[0] + " AND Rakennusvuosi <= " + t[1]// + " AND 'Käyttötarkoitus 1' IN (" + rakennustyyppi + ")"			
+				"filter": ["==", "Year_of_co", 2000],
+				'paint': {
+					"fill-color": "#d44242"
+				},
+				'source-layer': 'buildings'
+			});
+
+		});
+		
+		addLayer('Buildings', 'buildings');	
+
+    $(document).ready(function () {
+        var slider = document.getElementById('slider');
+
+        sliderSet = noUiSlider.create(slider, {
+            start: [1700, 2013], // Handle start position
+            //step: 10, // Slider moves in increments of '10'
+            margin: 1, // Handles must be more than '20' apart
+            connect: true, // Display a colored bar between the handles
+            direction: 'ltr', // Put '0' at the bottom of the slider
+            orientation: 'horizontal', // Orient the slider vertically
+            behaviour: 'tap-drag', // Move handle on tap, bar is draggable
+            range: { // Slider can select '0' to '100'
+                'min': 1700,
+                'max': 2013
+            },
+            pips: { // Show a scale with the slider
+                mode: 'steps',
+                density: 2
+            }
+        });
+        //slider.noUiSlider.on('end', function () {
+        //    var zoomi = googlemap.getZoom();
+        //    var centercoords = googlemap.getCenter();
+
+        //    update(zoomi, centercoords, mapType);
+        //});
+
+        slider.noUiSlider.on('change', function () {
+            var zoomi = googlemap.getZoom();
+            var centercoords = googlemap.getCenter();
+
+
+
+            if (mapType == 'custom') {
+                mapOptions = {
+                    center: centercoords,
+                    zoom: zoomi,
+                    styles: mapstyles
+                };
+            }
+
+            update(zoomi, centercoords, mapType);
+        });
+
+        slider.noUiSlider.on('update', function () {
+            setDownBoarderhover();
+            setTopBoarderhover();
+        });
+
+    });
+
+    function setDownBoarderhover() {
+        $('.noUi-handle-lower').children().remove('div');
+        var t = sliderSet.get();
+        $('.noUi-handle-lower').append('<div id="beginYear"><br/><br/><span id="beginSpan">' + Math.round(t[0]) + '</span></div>');
+    }
+    function setTopBoarderhover() {
+        $('.noUi-handle-upper').children().remove('div');
+        var t = sliderSet.get();
+        $('.noUi-handle-upper').append('<div id="endYear"><br/><br/><span id="endSpan">' + Math.round(t[1]) + '</span></div>');
+    }
+
+    function setBoarders() {
+        setDownBoarderhover();
+        setTopBoarderhover();
+    }		
+		
+		
 <!-- changing basemap -->	
 		var layerList = document.getElementById('sidebar');
 		var inputs = layerList.getElementsByTagName('input');
@@ -258,37 +451,8 @@
           sidebar.style.display = "none";
         }
 		}
-		
-<!-- Adding layer -->
-		map.on('style.load', function () {
-			map.addSource('buildings', {
-				type: 'vector',
-				url: 'mapbox://gabrielaadamczyk.dui0bi44'
-			});
-			map.addLayer({
-				'id': 'buildings',
-				"interactive": true,
-				'type': 'fill',
-				'source': 'buildings',
-				
-				"filter": ["==", "Year_of_co", 2000],
-				'paint': {
-					"fill-color": "#d44242"
-				},
-				'source-layer': 'buildings'
-			});
 
-		});
-		
-		addLayer('Buildings', 'buildings');
-	//	addLayer('Roads', 'roads');
-	  
-	  /*	var building = L.mapbox.tileLayer('gabrielaadamczyk.dui0bi44.buildings');
-		// add that layer to a map
-		building.addTo(map);
-		// remove that layer from a map
-		//map.removeLayer(carsLayer); */
-	  
+<!--show and hide layer buildings unnecessary???-->		
 		function addLayer(name, id) {
 			var link = document.createElement('a');
 			link.href = '#';
@@ -314,39 +478,7 @@
 			layers.appendChild(link);
 		}
 		
-//Popup - nie działa!! ?
-		var popup = new mapboxgl.Popup({
-			closeButton: false,
-			closeOnClick: false
-		});
-		
-		
-		map.on('mousemove', function(e) {
-			map.featuresAt(e.point, {
-				radius: 7.5, // Half the marker size (15px).
-				includeGeometry: true,
-				layer: 'buildings'
-			}, function(err, features) {
-				// Change the cursor style as a UI indicator.
-				map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
-
-				if (err || !features.length) {
-					popup.remove();
-					return;
-				}
-
-				var feature = features[0];
-
-				// Initialize a popup and set its coordinates
-				// based on the feature found.
-				popup.setLngLat(feature.geometry.coordinates)
-					.setHTML(feature.properties.Facade)
-					.addTo(map);
-			});
-		});
-		
-		
-	  
+  
 // Add zoom and rotation controls to the map.
 		map.addControl(new mapboxgl.Navigation());		
 		
@@ -362,10 +494,7 @@
 			
 			
 		map.addControl(new mapboxgl.Geocoder());
-		
-		
-		
-		
+
 
 </script>
 </body>

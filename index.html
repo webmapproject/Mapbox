@@ -256,7 +256,7 @@
 		
 <script>
 
-	var map; //latSet
+	var map; 
     var sliderSet;
     var mapType;
     var mapOptions;
@@ -264,10 +264,13 @@
     var rakennustyyppi;
 	
 <!-- initializing a map -->
+
+
 	mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FicmllbGFhZGFtY3p5ayIsImEiOiJjaWpldzV6ZncwMDA1dnhtNG56OGdhc2FvIn0.jW6mw1QLlMkBLgpAH0NXqA';
 	var map = new mapboxgl.Map({
 	    container: 'map',
-	    style: 'mapbox://styles/mapbox/light-v8',
+	    
+		style: 'mapbox://styles/mapbox/light-v8',
 	    zoom: 13,
 	    center: [24.9424015570944, 60.18199466214881]
 	});
@@ -295,7 +298,7 @@
             };
         }
 		
-		var map2 = new mapboxgl.Map(mapDiv, mapOptions);
+		var mapp = new mapboxgl.Map(mapDiv, mapOptions);
         map = map2;
         //map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('googft-legend-open'));
         //map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('googft-legend'));
@@ -318,29 +321,8 @@
             }
         }); */
 
-		
-
-        if (isMobile) {
-            var legend = document.getElementById('googft-legend');
-            var legendOpenButton = document.getElementById('googft-legend-open');
-            var legendCloseButton = document.getElementById('googft-legend-close');
-            legend.style.display = 'none';
-            legendOpenButton.style.display = 'block';
-            legendCloseButton.style.display = 'block';
-            legendOpenButton.onclick = function () {
-                legend.style.display = 'block';
-                legendOpenButton.style.display = 'none';
-            }
-            legendCloseButton.onclick = function () {
-                legend.style.display = 'none';
-                legendOpenButton.style.display = 'block';
-            }
-        }
-
-	}	
-		
 <!-- Adding layer -->
-		layer = map.on('style.load', function () {
+	/*	layer = map.on('style.load', function () {
 			map.addSource('buildings', {
 				type: 'vector',
 				url: 'mapbox://gabrielaadamczyk.dui0bi44'
@@ -360,9 +342,58 @@
 
 		});
 		
+		addLayer('Buildings', 'buildings');	*/
+		
+
+     /*   if (isMobile) {
+            var legend = document.getElementById('googft-legend');
+            var legendOpenButton = document.getElementById('googft-legend-open');
+            var legendCloseButton = document.getElementById('googft-legend-close');
+            legend.style.display = 'none';
+            legendOpenButton.style.display = 'block';
+            legendCloseButton.style.display = 'block';
+            legendOpenButton.onclick = function () {
+                legend.style.display = 'block';
+                legendOpenButton.style.display = 'none';
+            }
+            legendCloseButton.onclick = function () {
+                legend.style.display = 'none';
+                legendOpenButton.style.display = 'block';
+            }
+        }*/
+
+	}	
+		
+<!-- Adding layer -->
+		layer = map.on('style.load', function () {
+			map.addSource('buildings', {
+				type: 'vector',
+				url: 'mapbox://gabrielaadamczyk.dui0bi44'
+			});
+			map.addLayer({
+				'id': 'buildings',
+				"interactive": true,
+				'type': 'fill',
+				'source': 'buildings',
+				'filter': ["all", [">=","Year_of_co", 1700], ["<=","Year_of_co", 2000]],
+				
+				//'filter': ["all", [">=","Year_of_co", t[0]], ["<=","Year_of_co", t[1]]],
+//["==", "Year_of_co", 2000],
+//"Rakennusvuosi >= " + t[0] + " AND Rakennusvuosi <= " + t[1]// + " AND 'Käyttötarkoitus 1' IN (" + rakennustyyppi + ")"			
+
+				'paint': {
+					"fill-color": "#d44242"
+				},
+				'source-layer': 'buildings'
+			});
+
+		});
+		
 		addLayer('Buildings', 'buildings');	
 
-    $(document).ready(function () {
+    
+	
+	$(document).ready(function () {
         var slider = document.getElementById('slider');
 
         sliderSet = noUiSlider.create(slider, {
@@ -382,18 +413,11 @@
                 density: 2
             }
         });
-        //slider.noUiSlider.on('end', function () {
-        //    var zoomi = googlemap.getZoom();
-        //    var centercoords = googlemap.getCenter();
 
-        //    update(zoomi, centercoords, mapType);
-        //});
 
         slider.noUiSlider.on('change', function () {
-            var zoomi = googlemap.getZoom();
-            var centercoords = googlemap.getCenter();
-
-
+            var zoomi = map2.getZoom();
+            var centercoords = map2.getCenter();
 
             if (mapType == 'custom') {
                 mapOptions = {
@@ -480,11 +504,11 @@
 		}
 		
   
-// Add zoom and rotation controls to the map.
+// Add zoom and rotation controls to the map
 		map.addControl(new mapboxgl.Navigation());		
 		
 
-			
+// Add geocoder			
 		map.addControl(new mapboxgl.Geocoder());
 
 

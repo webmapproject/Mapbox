@@ -364,11 +364,11 @@
 
 	}	
 
-/*
-        var slider = document.getElementById('slider');		
+
+//        var slider = document.getElementById('slider');		
 	
-		var t = slider.noUiSlider.get();
-*/		
+//		var t = slider.noUiSlider.get();
+		
 
 noUiSlider.create(slider, {
     start: [1700.0, 2015.0],
@@ -381,10 +381,10 @@ noUiSlider.create(slider, {
 });
 
 $("#slider").click(function (event) {
-                range = slider.noUiSlider.get();
-                t[0] = range.slice(0, 1);
-                t[1] = range.slice(1);
-}
+                var range = slider.noUiSlider.get();
+                var t[0] = range.slice(0, 1);
+                var t[1] = range.slice(1);
+});
 
 
 <!-- Adding layer -->

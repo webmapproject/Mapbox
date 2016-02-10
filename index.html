@@ -315,6 +315,12 @@ noUiSlider.create(slider, {
     }
 });
 
+$("#slider").click(function (event) {
+                range = slider.noUiSlider.get();
+                t[0] = range.slice(0, 1);
+                t[1] = range.slice(1);
+}
+
 /*        layer = new google.maps.FusionTablesLayer({
             map: map,
             heatmap: { enabled: false },
@@ -388,9 +394,9 @@ noUiSlider.create(slider, {
 				"interactive": true,
 				'type': 'fill',
 				'source': 'buildings',
-				'filter': ["all", [">=","Year_of_co", 1700], ["<=","Year_of_co", 2000]],
+				//'filter': ["all", [">=","Year_of_co", 1700], ["<=","Year_of_co", 2000]],
 				
-				//'filter': ["all", [">=","Year_of_co", t[0]], ["<=","Year_of_co", t[1]]],
+				'filter': ["all", [">=","Year_of_co", t[0]], ["<=","Year_of_co", t[1]]],
 //["==", "Year_of_co", 2000],
 //"Rakennusvuosi >= " + t[0] + " AND Rakennusvuosi <= " + t[1]// + " AND 'Käyttötarkoitus 1' IN (" + rakennustyyppi + ")"			
 

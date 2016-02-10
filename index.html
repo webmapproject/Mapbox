@@ -305,21 +305,7 @@
 
         map.setZoom(currentView);
 
-noUiSlider.create(slider, {
-    start: [1700.0, 2015.0],
-    behaviour: "drag",
-    connect: true,
-    range: {
-        min: 1700.0,
-        max: 2015.0
-    }
-});
 
-$("#slider").click(function (event) {
-                range = slider.noUiSlider.get();
-                t[0] = range.slice(0, 1);
-                t[1] = range.slice(1);
-}
 
 /*        layer = new google.maps.FusionTablesLayer({
             map: map,
@@ -383,6 +369,24 @@ $("#slider").click(function (event) {
 	
 		var t = slider.noUiSlider.get();
 */		
+
+noUiSlider.create(slider, {
+    start: [1700.0, 2015.0],
+    behaviour: "drag",
+    connect: true,
+    range: {
+        min: 1700.0,
+        max: 2015.0
+    }
+});
+
+$("#slider").click(function (event) {
+                range = slider.noUiSlider.get();
+                t[0] = range.slice(0, 1);
+                t[1] = range.slice(1);
+}
+
+
 <!-- Adding layer -->
 		layer = map.on('style.load', function () {
 			map.addSource('buildings', {

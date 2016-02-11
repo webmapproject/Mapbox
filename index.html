@@ -278,7 +278,7 @@
 	
  	function update(currentView, centercoords, maptype) {
 
-	map.featureLayer.setFilter(function(f) {
+	map.layer.setFilter(function(f) {
             return f.properties['marker-symbol'] === 'fast-food';
         });
         return false;

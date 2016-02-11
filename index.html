@@ -210,7 +210,7 @@
 			</div>
 			<div id="slider"></div>
 			<div style="height:20px;"></div>
-			<p id=virhe></p>
+			
 		</div>	
 		
 <!-- changing basemap -->	
@@ -237,6 +237,7 @@
                 <h4><link> Helsinki building data: </link> </h4>
                 <a href="http://www.hri.fi/fi/data/helsingin-kaupungin-rakennusrekisterin-ote-62012/">Helsingin kaupungin rakennusrekisterin ote 6/2012 </a>
                 <br>
+                <p id=virhe></p>
                 <br>
                 <h4> Developer team: </h4>Miska Kauppinen<br/>Gabriela Adamczyk<br/>Juhani Keskitalo<br />
 			</div>
@@ -494,7 +495,7 @@ $("#slider").click(function (event) {
 	
 }	
 catch(err) {
-    document.getElementById("demo").innerHTML = err.message;
+    document.getElementById("virhe").innerHTML = err.message;
 }	
 		
 		

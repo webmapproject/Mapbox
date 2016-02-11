@@ -414,7 +414,7 @@ $("#slider").click(function (event) {
         var slider = document.getElementById('slider');
 
         sliderSet = noUiSlider.create(slider, {
-            start: [1400, 2013], // Handle start position
+            start: [1800, 2013], // Handle start position
             //step: 10, // Slider moves in increments of '10'
             margin: 1, // Handles must be more than '20' apart
             connect: true, // Display a colored bar between the handles
@@ -423,7 +423,7 @@ $("#slider").click(function (event) {
             behaviour: 'tap-drag', // Move handle on tap, bar is draggable
             range: { // Slider can select '0' to '100'
             	// t is min and max when hovering
-                'min': 1600,
+                'min': 1800,
                 'max': 2013
             },
             pips: { // Show a scale with the slider

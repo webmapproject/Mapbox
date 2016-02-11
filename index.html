@@ -237,7 +237,9 @@
                 <h4><link> Helsinki building data: </link> </h4>
                 <a href="http://www.hri.fi/fi/data/helsingin-kaupungin-rakennusrekisterin-ote-62012/">Helsingin kaupungin rakennusrekisterin ote 6/2012 </a>
                 <br>
-                <p id=virhe></p>
+                <div id="nodelist">
+        		<em>Click on the map to get feature info</em>
+    		</div>
                 <br>
                 <h4> Developer team: </h4>Miska Kauppinen<br/>Gabriela Adamczyk<br/>Juhani Keskitalo<br />
 			</div>
@@ -452,6 +454,10 @@ $("#slider").click(function (event) {
     function setDownBoarderhover() {
         $('.noUi-handle-lower').children().remove('div');
         var t = sliderSet.get();
+        
+        document.getElementById('nodelist').innerHTML = '<iframe seamless src="' + t + '"></iframe>';
+        
+        
         $('.noUi-handle-lower').append('<div id="beginYear"><br/><br/><span id="beginSpan">' + Math.round(t[0]) + '</span></div>');
     }
     function setTopBoarderhover() {

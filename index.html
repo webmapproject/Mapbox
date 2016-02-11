@@ -455,7 +455,7 @@ $("#slider").click(function (event) {
         $('.noUi-handle-lower').children().remove('div');
         var t = sliderSet.get();
         
-        document.getElementById('nodelist').innerHTML = '<iframe seamless src="' + t + '"></iframe>';
+        document.getElementById('nodelist').innerHTML = "jotain" + t//'<iframe seamless src="' + t + '"></iframe>';
         
         
         $('.noUi-handle-lower').append('<div id="beginYear"><br/><br/><span id="beginSpan">' + Math.round(t[0]) + '</span></div>');

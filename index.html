@@ -389,10 +389,7 @@ $("#slider").click(function (event) {
                 var b = range.slice(1);
 });
 */
-} 
-catch(err) {
-    document.getElementById("demo").innerHTML = err.message;
-}
+
 <!-- Adding layer -->
 		layer = map.on('style.load', function () {
 			map.addSource('buildings', {
@@ -404,9 +401,9 @@ catch(err) {
 				"interactive": true,
 				'type': 'fill',
 				'source': 'buildings',
-				'filter': ["all", [">=","Year_of_co", 1700], ["<=","Year_of_co", 2000]],
+				//'filter': ["all", [">=","Year_of_co", 1700], ["<=","Year_of_co", 2000]],
 				
-				//'filter': ["all", [">=","Year_of_co", t[0]], ["<=","Year_of_co", t[1}]]],
+				'filter': ["all", [">=","Year_of_co", t[0]], ["<=","Year_of_co", t[1}]]],
 //["==", "Year_of_co", 2000],
 //"Rakennusvuosi >= " + t[0] + " AND Rakennusvuosi <= " + t[1]// + " AND 'Käyttötarkoitus 1' IN (" + rakennustyyppi + ")"			
 
@@ -419,6 +416,13 @@ catch(err) {
 		});
 		
 		addLayer('Buildings', 'buildings');	
+
+} 
+catch(err) {
+    document.getElementById("demo").innerHTML = err.message;
+}
+
+
 
     	var slider = document.getElementById("slider");
 	

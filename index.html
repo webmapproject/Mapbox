@@ -210,6 +210,7 @@
 			</div>
 			<div id="slider"></div>
 			<div style="height:20px;"></div>
+			<p id=virhe></p>
 		</div>	
 		
 <!-- changing basemap -->	
@@ -265,7 +266,7 @@
 	
 <!-- initializing a map -->
 
-
+try {
 	mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FicmllbGFhZGFtY3p5ayIsImEiOiJjaWpldzV6ZncwMDA1dnhtNG56OGdhc2FvIn0.jW6mw1QLlMkBLgpAH0NXqA';
 	var map = new mapboxgl.Map({
 	    container: 'map',
@@ -490,6 +491,11 @@ $("#slider").click(function (event) {
         setDownBoarderhover();
         setTopBoarderhover();
     }		
+	
+}	
+catch(err) {
+    document.getElementById("demo").innerHTML = err.message;
+}	
 		
 		
 <!-- changing basemap -->	

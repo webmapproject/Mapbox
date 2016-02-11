@@ -401,8 +401,77 @@ $("#slider").click(function (event) {
                 var b = range.slice(1);
 });
 */
+/*copy from the nouislider before layer*/
 
-<!-- Adding layer -->
+	var slider = document.getElementById("slider");
+	
+	$(document).ready(function () {
+        var slider = document.getElementById('slider');
+
+        sliderSet = noUiSlider.create(slider, {
+            start: [1700, 2013], // Handle start position
+            //step: 10, // Slider moves in increments of '10'
+            margin: 1, // Handles must be more than '20' apart
+            connect: true, // Display a colored bar between the handles
+            direction: 'ltr', // Put '0' at the bottom of the slider
+            orientation: 'horizontal', // Orient the slider vertically
+            behaviour: 'tap-drag', // Move handle on tap, bar is draggable
+            range: { // Slider can select '0' to '100'
+                'min': 1700,
+                'max': 2013
+            },
+            pips: { // Show a scale with the slider
+                mode: 'steps',
+                density: 2
+            }
+        });
+
+
+        slider.noUiSlider.on('change', function () {
+            var zoomi = map.getZoom();
+            var centercoords = map.getCenter();
+
+            if (mapType == 'custom') {
+                mapOptions = {
+                    center: centercoords,
+                    zoom: zoomi,
+                    styles: mapstyles
+                };
+            }
+
+            //update(zoomi, centercoords, mapType);
+        });
+
+        slider.noUiSlider.on('update', function () {
+            setDownBoarderhover();
+            setTopBoarderhover();
+        });
+
+    });
+
+    function setDownBoarderhover() {
+        $('.noUi-handle-lower').children().remove('div');
+        var t = sliderSet.get();
+        $('.noUi-handle-lower').append('<div id="beginYear"><br/><br/><span id="beginSpan">' + Math.round(t[0]) + '</span></div>');
+    }
+    function setTopBoarderhover() {
+        $('.noUi-handle-upper').children().remove('div');
+        var t = sliderSet.get();
+        $('.noUi-handle-upper').append('<div id="endYear"><br/><br/><span id="endSpan">' + Math.round(t[1]) + '</span></div>');
+    }
+
+    function setBoarders() {
+        setDownBoarderhover();
+        setTopBoarderhover();
+    }
+
+
+
+
+
+
+
+/*<!-- Adding layer -->*/
 		layer = map.on('style.load', function () {
 			map.addSource('buildings', {
 				type: 'vector',
@@ -429,7 +498,7 @@ $("#slider").click(function (event) {
 		
 		addLayer('Buildings', 'buildings');	
 
-
+/*
 
     	var slider = document.getElementById("slider");
 	
@@ -494,7 +563,7 @@ $("#slider").click(function (event) {
     }		
 	
 
-		
+*/		
 		
 <!-- changing basemap -->	
 		var layerList = document.getElementById('sidebar');

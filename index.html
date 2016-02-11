@@ -407,8 +407,13 @@ $("#slider").click(function (event) {
 */
 /*copy from the nouislider before layer*/
 
-
-	var t = [1700, 2013]
+	//dummy t variable
+	i=0
+	if (i==0) {
+		var t = [1700, 2013]
+		var i = 1
+	}
+	
 	
 	$(document).ready(function () {
         var slider = document.getElementById('slider');

@@ -265,7 +265,6 @@
 	
 <!-- initializing a map -->
 
-try {
 
 	mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FicmllbGFhZGFtY3p5ayIsImEiOiJjaWpldzV6ZncwMDA1dnhtNG56OGdhc2FvIn0.jW6mw1QLlMkBLgpAH0NXqA';
 	var map = new mapboxgl.Map({
@@ -401,9 +400,9 @@ $("#slider").click(function (event) {
 				"interactive": true,
 				'type': 'fill',
 				'source': 'buildings',
-				//'filter': ["all", [">=","Year_of_co", 1700], ["<=","Year_of_co", 2000]],
+				'filter': ["all", [">=","Year_of_co", 1700], ["<=","Year_of_co", 2000]],
 				
-				'filter': ["all", [">=","Year_of_co", t[0]], ["<=","Year_of_co", t[1]]],
+				//'filter': ["all", [">=","Year_of_co", t[0]], ["<=","Year_of_co", t[1]]],
 //["==", "Year_of_co", 2000],
 //"Rakennusvuosi >= " + t[0] + " AND Rakennusvuosi <= " + t[1]// + " AND 'Käyttötarkoitus 1' IN (" + rakennustyyppi + ")"			
 
@@ -416,11 +415,6 @@ $("#slider").click(function (event) {
 		});
 		
 		addLayer('Buildings', 'buildings');	
-
-} 
-catch(err) {
-    document.getElementById("demo").innerHTML = err.message;
-}
 
 
 
@@ -449,8 +443,8 @@ catch(err) {
 
 
         slider.noUiSlider.on('change', function () {
-            var zoomi = map2.getZoom();
-            var centercoords = map2.getCenter();
+            var zoomi = map.getZoom();
+            var centercoords = map.getCenter();
 
             if (mapType == 'custom') {
                 mapOptions = {

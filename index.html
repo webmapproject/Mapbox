@@ -188,7 +188,7 @@
 </style>
 </head>
 
-<!--<body onload="init()">	-->
+<body onload="init()">
 
 <!-- Function scripts -->
 	<script src="nouislider.min.js"></script>
@@ -259,6 +259,8 @@
 
 		
 <script>
+
+function init() {
 
 	var map; 
     var sliderSet;
@@ -630,7 +632,7 @@ var t = sliderSet.get();
 // Add geocoder			
 		map.addControl(new mapboxgl.Geocoder());
 
-
+}
 </script>
 </body>
 </html>

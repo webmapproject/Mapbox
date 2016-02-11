@@ -277,7 +277,14 @@
 	mapType = 'custom';
 	
  	function update(currentView, centercoords, maptype) {
-       google.maps.visualRefresh = true;
+
+	map.featureLayer.setFilter(function(f) {
+            return f.properties['marker-symbol'] === 'fast-food';
+        });
+        return false;
+
+
+/*       google.maps.visualRefresh = true;
 
         var isMobile = (navigator.userAgent.toLowerCase().indexOf('android') > -1) ||
           (navigator.userAgent.match(/(iPod|iPhone|iPad|BlackBerry|Windows Phone|iemobile)/));
@@ -305,7 +312,7 @@
 
         map.setZoom(currentView);
 
-
+*/
 
 /*        layer = new google.maps.FusionTablesLayer({
             map: map,

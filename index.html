@@ -21,8 +21,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 	 
-<!--own styles--> 
-	<link rel="stylesheet" href="styles.css"> 
+<!--own styles
+	<link rel="stylesheet" href="styles.css"> --> 
 	<link href="nouislider.min.css" rel="stylesheet">
 		
  <style>
@@ -38,7 +38,7 @@
         color: white;
         text-align: center;
         font-family: "Lucida Sans Unicode", Lucida Grande, sans-serif;
-        position: absolute;
+        position: fixed;
         z-index: 50;
         right: 0;
         left: 0;
@@ -183,16 +183,49 @@
                 bottom: 15px;
             }
 	
+	.rakennustyyppiList
+        {
+            color:black; 
+            font-size:10px !important;
+        }
 	
+.legend-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 10px;
+    margin-bottom: 30px;
+    z-index: 1;
+}
+
+.legend {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+}
+
+.legend h4 {
+    margin: 0 0 10px;
+}
+
+.legend-key {
+    display: inline-block;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+}
 	
 </style>
 </head>
 
-<body onload="init()">
+<body>	
 
 <!-- Function scripts -->
 	<script src="nouislider.min.js"></script>
-	<script src="map.js"></script>
+<!-- 	<script src="map.js"></script> -->
 
 <!-- Plugin to geocoder script -->
 	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v0.1.0/mapbox-gl-geocoder.js'></script>
@@ -208,9 +241,15 @@
 			<div class="ol-toggle-options">  
 				<button class="btn btn-primary" title="Sivupalkki" onClick="toggleControlPanel()" href="#toggle">Menu</button>   
 			</div>
-			<div id="slider"></div>
-			<div style="height:20px;"></div>
-			
+		<!--	<div class='map-overlay top'>
+				<div class='map-overlay-inner'>
+					<!--<h2>Years</h2>
+					<label id='month'></label>
+					<input id='slider' type='range' min='1700' max='2013' step='1' value='0' />
+				</div>
+				<div class='map-overlay-inner'>
+				</div>
+			</div> -->
 		</div>	
 		
 <!-- changing basemap -->	
@@ -233,13 +272,33 @@
 				<input id='satellite' type='radio' name='rtoggle' value='satellite'>
 				<label for='satellite'>satellite</label>
 				<br>
+				<h4>Select filter:</h4>
+                <div class="btn-group">
+				<form>
+                    <button data-toggle="dropdown" class="btn btn-primary dropdown">Building types</button>
+                    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" data-placeholder="false"><span class="caret"></span></button>
+                    <ul class="dropdown-menu" style="padding-left:10px;">
+                        <li class="rakennustyyppiList"><input type="checkbox" onclick="handleBuildingtypes(this, '\'A Asuinrakennukset\'');" />Asuinrakennukset</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'B Vapaa-ajan asuinrakennukset\'');" />Vapaa-ajan asuinrakennukset</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'C Liikerakennukset\'');" />Liikerakennukset</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'D Toimistorakennukset\'');" />Toimistorakennukset</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'E Liikenteen rakennukset\'');" />Liikenteen rakennukset</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'F Hoitoalan rakennukset\'');" />Hoitoalan rakennukset</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'G Kokoontumisrakennukset\'');" />Kokoontumisrakennukset</li>
+                        <li class="rakennustyyppiList"><input type="checkbox" onclick="handleBuildingtypes(this, '\'H Opetusrakennukset\'');" />Opetusrakennukset</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'J Teollisuusrakennukset\'');" />Teollisuusrakennukset</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'K Varastorakennukset\'');" />Varastorakennukset</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'L Palo- ja pelastustoimen rakennukset\'');" />Palo- ja pelastustoimen rakennukset</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'M Maatalousrakennukset\'');" />Maatalousrakennukset</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'N Muut rakennukset\'');" />Muut rakennukset</li>
+                    </ul>
+				</form>
+                </div>
+                <br>
                 <br>
                 <h4><link> Helsinki building data: </link> </h4>
                 <a href="http://www.hri.fi/fi/data/helsingin-kaupungin-rakennusrekisterin-ote-62012/">Helsingin kaupungin rakennusrekisterin ote 6/2012 </a>
                 <br>
-                <div id="nodelist">
-        		<em>Click on the map to get feature info</em>
-    		</div>
                 <br>
                 <h4> Developer team: </h4>Miska Kauppinen<br/>Gabriela Adamczyk<br/>Juhani Keskitalo<br />
 			</div>
@@ -248,7 +307,12 @@
 			<nav id="menu"></nav>		
 		</div>
 	</div>
-	
+
+	<div class='legend-container'>
+	  <div id='legend' class='legend'>
+		<h4>Year of construction</h4>
+	  </div>
+	</div>
 <!-- possible footer -->
    <!-- <div class="container-fluid">
             <div id="footer">
@@ -260,327 +324,172 @@
 		
 <script>
 
-function init() {
-	var i = 0
+mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FicmllbGFhZGFtY3p5ayIsImEiOiJjaWpldzV6ZncwMDA1dnhtNG56OGdhc2FvIn0.jW6mw1QLlMkBLgpAH0NXqA';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/dark-v8',
+    center: [24.980367, 60.192829],
+    zoom: 11.2
+});
+
+// The key name that exists in each polygon properties
+// object we want to display
+var facet = 'Year_of_co';
+
+// Show the state choropleth first
+var level = 'Address';
+
+// Create a popup, but don't add it to the map yet.
+var popup = new mapboxgl.Popup({
+    closeButton: false
+});
+
+// The values in each array are:
+// 1. Color of choropleth
+// 2. State population value
+// 3. County population value
+var layers = [
+    ['#723122', 2013],
+    ['#8B4225', 2000],
+    ['#A25626', 1950],
+    ['#B86B25', 1900],
+    ['#CA8323', 1850],
+    ['#DA9C20', 1800],
+    ['#E6B71E', 1750],
+    ['#EED322', 1700]
+   // ['#F2F12D', 0]
+];
+
+function filterBy(type) {
+    // Which value in each layers array
+    // should be used for filtering.
+    var position = type === 'Address' ? 1 : 2;
+
+    layers.forEach(function(layer, i) {
+        var filters = [
+            'all',
+            ['>=', facet, layer[position]],
+            // Does a state or county property (depending on `type`)
+            // Exist in a given feature? Just show those:
+            ['!=', type, undefined]
+        ];
+
+        if (i !== 0) filters.push(['<', facet, layers[i - 1][position]]);
+        map.setFilter('layer-' + i, filters);
+
+        // Set the legend value for each layer
+        document.getElementById('legend-value-' + i).textContent = layer[position];
+    });
 }
-	var map; 
-    var sliderSet;
-    var mapType;
-    var mapOptions;
-    var mapstyles;
-    var rakennustyyppi;
-    //var t;
-	
-<!-- initializing a map -->
 
-	mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FicmllbGFhZGFtY3p5ayIsImEiOiJjaWpldzV6ZncwMDA1dnhtNG56OGdhc2FvIn0.jW6mw1QLlMkBLgpAH0NXqA';
-	var map = new mapboxgl.Map({
-	    container: 'map',
-	    
-		style: 'mapbox://styles/mapbox/light-v8',
-	    zoom: 13,
-	    center: [24.9424015570944, 60.18199466214881]
-	});
-	mapType = 'custom';
-	
-// 	function update(currentView, centercoords, maptype) {
+function renderChoropleth() {
+    var legend = document.getElementById('legend');
 
-//	layer.setFilter(function(f) {
-//            return f.properties['marker-symbol'] === 'fast-food';
-//        });
-        //return false;
+    // Here we pull a vector tile source that makes
+    // up our choropleth. The source was uploaded as
+    // a GeoJSON document and converted to a a vector
+    // tile with property data that looks like this:
+    //
+    // {
+    //    "name": "California"
+    //    "population": 38802500
+    //    "state": 06
+    // },
+    // {
+    //    "county": 06037
+    //    "name": "Los Angeles County"
+    //    "population": 9974203
+    // }
+    // ... etc.
+    //
+    // Polygon data was added using https://github.com/mbostock/us-atlas
+    // Census data was added using http://censusreporter.org/
+    map.addSource('buildings', {
+        "type": "vector",
+        "url": "mapbox://gabrielaadamczyk.dui0bi44"
+    });
 
-	//var t = sliderSet.get();
-
-
-
-
-/*       google.maps.visualRefresh = true;
-
-        var isMobile = (navigator.userAgent.toLowerCase().indexOf('android') > -1) ||
-          (navigator.userAgent.match(/(iPod|iPhone|iPad|BlackBerry|Windows Phone|iemobile)/));
-
-        if (isMobile) {
-            var viewport = document.querySelector("meta[name=viewport]");
-            viewport.setAttribute('content', 'initial-scale=1.0, user-scalable=no');
-		}
-	 
-		var mapDiv = document.getElementById('map');
-        mapDiv.style.width = isMobile ? '100%' : '100%';
-        mapDiv.style.height = isMobile ? '100%' : '100%';
-        if (maptype != 'custom') {
-            mapOptions = {
-                center: centercoords,
-                zoom: currentView,
-                mapTypeId: maptype
-            };
+    layers.forEach(function(layer, i) {
+        map.addLayer({
+            "id": "layer-" + i,
+            "interactive": true,
+            "type": "fill",
+            "source": "buildings",
+            "source-layer": "buildings",
+            "paint": {
+                "fill-color": layer[0],
+                "fill-opacity": 0.75
+            }
         }
-		
-		var mapp = new mapboxgl.Map(mapDiv, mapOptions);
-        map = map2;
-        //map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('googft-legend-open'));
-        //map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('googft-legend'));
+		//,'place_label_city_small_s'//
+		);
 
-        map.setZoom(currentView);
+        // Build out legends
+        var item = document.createElement('div');
 
-*/
+        var key = document.createElement('span');
+        key.className = 'legend-key';
+        key.style.backgroundColor = layer[0];
 
-/*        layer = new google.maps.FusionTablesLayer({
-            map: map,
-            heatmap: { enabled: false },
-            query: {
-                select: "col21",
-                from: "1Cjp5kwTFW1zb7rCRILUg6PryPwo_9RkkM4kD960",
-                where: "Rakennusvuosi >= " + t[0] + " AND Rakennusvuosi <= " + t[1]// + " AND 'Käyttötarkoitus 1' IN (" + rakennustyyppi + ")"
-            },
-            options: {
-                styleId: 1,
-                templateId: 2
-            }
-        }); */
+        var value = document.createElement('span');
+        value.id = 'legend-value-' + i;
 
-<!-- Adding layer -->
-	/*	layer = map.on('style.load', function () {
-			map.addSource('buildings', {
-				type: 'vector',
-				url: 'mapbox://gabrielaadamczyk.dui0bi44'
-			});
-			map.addLayer({
-				'id': 'buildings',
-				"interactive": true,
-				'type': 'fill',
-				'source': 'buildings',
-	//"Rakennusvuosi >= " + t[0] + " AND Rakennusvuosi <= " + t[1]// + " AND 'Käyttötarkoitus 1' IN (" + rakennustyyppi + ")"			
-				"filter": ["==", "Year_of_co", 2000],
-				'paint': {
-					"fill-color": "#d44242"
-				},
-				'source-layer': 'buildings'
-			});
-
-		});
-		
-		addLayer('Buildings', 'buildings');	*/
-		
-
-     /*   if (isMobile) {
-            var legend = document.getElementById('googft-legend');
-            var legendOpenButton = document.getElementById('googft-legend-open');
-            var legendCloseButton = document.getElementById('googft-legend-close');
-            legend.style.display = 'none';
-            legendOpenButton.style.display = 'block';
-            legendCloseButton.style.display = 'block';
-            legendOpenButton.onclick = function () {
-                legend.style.display = 'block';
-                legendOpenButton.style.display = 'none';
-            }
-            legendCloseButton.onclick = function () {
-                legend.style.display = 'none';
-                legendOpenButton.style.display = 'block';
-            }
-        }*/
-
-//	}	
-
-
-//        var slider = document.getElementById('slider');		
-	
-//		var t = slider.noUiSlider.get();
-		
-/*
-noUiSlider.create(slider, {
-    start: [1700.0, 2015.0],
-    behaviour: "drag",
-    connect: true,
-    range: {
-        min: 1700.0,
-        max: 2015.0
-    }
-});
-var a = 1
-var b = 2015
-
-$("#slider").click(function (event) {
-                var range = slider.noUiSlider.get();
-                var a = range.slice(0, 1);
-                var b = range.slice(1);
-});
-*/
-/*copy from the nouislider before layer*/
-
-	//dummy t variable
-
-	if (i==0) {
-		var t = [1800, 2013]
-		var i = 1
-	}
-	
-	
-	$(document).ready(function () {
-        var slider = document.getElementById('slider');
-
-        sliderSet = noUiSlider.create(slider, {
-            start: [1800, 2013], // Handle start position
-            //step: 10, // Slider moves in increments of '10'
-            margin: 1, // Handles must be more than '20' apart
-            connect: true, // Display a colored bar between the handles
-            direction: 'ltr', // Put '0' at the bottom of the slider
-            orientation: 'horizontal', // Orient the slider vertically
-            behaviour: 'tap-drag', // Move handle on tap, bar is draggable
-            range: { // Slider can select '0' to '100'
-            	// t is min and max when hovering
-                'min': 1800,
-                'max': 2013
-            },
-            pips: { // Show a scale with the slider
-                mode: 'steps',
-                density: 2
-            }
-        });
-
-        slider.noUiSlider.on('change', function () {
-            var zoomi = map.getZoom();
-            var centercoords = map.getCenter();
-
-            if (mapType == 'custom') {
-                mapOptions = {
-                    center: centercoords,
-                    zoom: zoomi,
-                    styles: mapstyles
-                };
-            }
-	
-	document.getElementById('nodelist').innerHTML = "vaihto" + t
-	
-            //update(zoomi, centercoords, mapType);
-        });
-
-        slider.noUiSlider.on('update', function () {
-            setDownBoarderhover();
-            setTopBoarderhover();
-        });
-
+        item.appendChild(key);
+        item.appendChild(value);
+        legend.appendChild(item);
     });
 
-    function setDownBoarderhover() {
-        $('.noUi-handle-lower').children().remove('div');
-        var t = sliderSet.get();
-        
-        document.getElementById('nodelist').innerHTML = "jotain" + t//'<iframe seamless src="' + t + '"></iframe>';
-        
-        
-        $('.noUi-handle-lower').append('<div id="beginYear"><br/><br/><span id="beginSpan">' + Math.round(t[0]) + '</span></div>');
-    }
-    function setTopBoarderhover() {
-        $('.noUi-handle-upper').children().remove('div');
-        var t = sliderSet.get();
-        $('.noUi-handle-upper').append('<div id="endYear"><br/><br/><span id="endSpan">' + Math.round(t[1]) + '</span></div>');
-    }
+    // Initially filter this by the state level
+    filterBy(level);
+}
 
-    function setBoarders() {
-        setDownBoarderhover();
-        setTopBoarderhover();
+map.on('style.load', renderChoropleth);
+
+/*map.on('move', function(e) {
+    var z = e.target.getZoom();
+
+    if (z > 4 && level !== 'county') {
+        level = 'county';
+        filterBy(level);
     }
 
-//var t = sliderSet.get();
+    if (z <= 4 && level !== 'state') {
+        level = 'state';
+        filterBy(level);
+    }
+});*/
 
+map.on('mousemove', function(e) {
+    map.featuresAt(e.point, {
 
+        // Collect each layer id we created into an array.
+        layer: layers.map(function(layer, i) {
+            return 'layer-' + i;
+        })
+    }, function(err, features) {
+        // Change the cursor style as a UI indicator.
+        map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
 
+        if (err || !features.length) {
+            popup.remove();
+            return;
+        }
 
+        var details = features[0].properties;
 
-/*<!-- Adding layer -->*/
-		layer = map.on('style.load', function () {
-			map.addSource('buildings', {
-				type: 'vector',
-				url: 'mapbox://gabrielaadamczyk.dui0bi44'
-			});
-			map.addLayer({
-				'id': 'buildings',
-				"interactive": true,
-				'type': 'fill',
-				'source': 'buildings',
-				//'filter': ["all", [">=","Year_of_co", 1700], ["<=","Year_of_co", 2000]],
-				
-				'filter': ["all", [">=","Year_of_co", t[0]], ["<=","Year_of_co", t[1]]],
-//["==", "Year_of_co", 2000],
-//"Rakennusvuosi >= " + t[0] + " AND Rakennusvuosi <= " + t[1]// + " AND 'Käyttötarkoitus 1' IN (" + rakennustyyppi + ")"			
-
-				'paint': {
-					"fill-color": "#d44242"
-				},
-				'source-layer': 'buildings'
-			});
-
-		});
-		
-		addLayer('Buildings', 'buildings');	
-
-/*
-
-    	var slider = document.getElementById("slider");
-	
-	$(document).ready(function () {
-        var slider = document.getElementById('slider');
-
-        sliderSet = noUiSlider.create(slider, {
-            start: [1700, 2013], // Handle start position
-            //step: 10, // Slider moves in increments of '10'
-            margin: 1, // Handles must be more than '20' apart
-            connect: true, // Display a colored bar between the handles
-            direction: 'ltr', // Put '0' at the bottom of the slider
-            orientation: 'horizontal', // Orient the slider vertically
-            behaviour: 'tap-drag', // Move handle on tap, bar is draggable
-            range: { // Slider can select '0' to '100'
-                'min': 1700,
-                'max': 2013
-            },
-            pips: { // Show a scale with the slider
-                mode: 'steps',
-                density: 2
-            }
-        });
-
-
-        slider.noUiSlider.on('change', function () {
-            var zoomi = map.getZoom();
-            var centercoords = map.getCenter();
-
-            if (mapType == 'custom') {
-                mapOptions = {
-                    center: centercoords,
-                    zoom: zoomi,
-                    styles: mapstyles
-                };
-            }
-
-            //update(zoomi, centercoords, mapType);
-        });
-
-        slider.noUiSlider.on('update', function () {
-            setDownBoarderhover();
-            setTopBoarderhover();
-        });
-
+        // Initialize a popup and set its coordinates
+        // based on the feature found.
+        popup.setLngLat(e.lngLat)
+            .setHTML('<b>Year of construction: </b>' + details[facet] + 
+						'<br><b>Addres: </b>' + details["Address"] + 
+						'<br><b>Type: </b>' + details["Intended_U"] +
+						'<br><b>Facade: </b>' + details["Facade"] +
+						'<br><b>Number of apartments: </b>' + details["Number_of"] +
+						'<br><b>ID: </b>' + details["building_c"])
+            .addTo(map);
     });
+});
 
-    function setDownBoarderhover() {
-        $('.noUi-handle-lower').children().remove('div');
-        var t = sliderSet.get();
-        $('.noUi-handle-lower').append('<div id="beginYear"><br/><br/><span id="beginSpan">' + Math.round(t[0]) + '</span></div>');
-    }
-    function setTopBoarderhover() {
-        $('.noUi-handle-upper').children().remove('div');
-        var t = sliderSet.get();
-        $('.noUi-handle-upper').append('<div id="endYear"><br/><br/><span id="endSpan">' + Math.round(t[1]) + '</span></div>');
-    }
-
-    function setBoarders() {
-        setDownBoarderhover();
-        setTopBoarderhover();
-    }		
-	
-
-*/		
 		
 <!-- changing basemap -->	
 		var layerList = document.getElementById('sidebar');
@@ -593,14 +502,17 @@ $("#slider").click(function (event) {
 		for (var i = 0; i < inputs.length; i++) {
 			inputs[i].onclick = switchLayer;
 		}
-
-	
-	
-
-
-
-
-
+		
+<!-- Hiding the side panel -->		
+		function toggleControlPanel(){
+        var sidebar = document.getElementById("sidebar");
+        if (sidebar.style.display == "none") {
+          sidebar.style.display = "block";
+        }
+        else {
+          sidebar.style.display = "none";
+        }
+		}
 
 <!--show and hide layer buildings unnecessary???-->		
 		function addLayer(name, id) {
@@ -627,7 +539,7 @@ $("#slider").click(function (event) {
 			var layers = document.getElementById('menu');
 			layers.appendChild(link);
 		}
-		
+
   
 // Add zoom and rotation controls to the map
 		map.addControl(new mapboxgl.Navigation());		
@@ -636,20 +548,7 @@ $("#slider").click(function (event) {
 // Add geocoder			
 		map.addControl(new mapboxgl.Geocoder());
 
-//}
-</script>
-<script>
-<!-- Hiding the side panel -->		
-		function toggleControlPanel(){
-        var sidebar = document.getElementById("sidebar");
-        if (sidebar.style.display == "none") {
-          sidebar.style.display = "block";
-        }
-        else {
-          sidebar.style.display = "none";
-        }
-		}
-		
+
 </script>
 </body>
 </html>

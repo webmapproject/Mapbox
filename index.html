@@ -15,8 +15,8 @@
 	<link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
 	
 <!-- Bootstarp scriptit -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
@@ -30,11 +30,13 @@
 	html, body {
 		overflow:hidden;
 		height:100%;
+		margin:100; 
+		padding:0;
 	}
 	
 	#header {
 /*	background-image: url("dark.png");*/
-        background-color:black;
+		background-color:black;
         color: white;
         text-align: center;
         font-family: "Lucida Sans Unicode", Lucida Grande, sans-serif;
@@ -191,11 +193,12 @@
 	
 .legend-container {
     position: absolute;
-    bottom: 0;
+    bottom: 30px;
     left: 0;
-    padding: 0 10px;
+    padding: 10px;
     margin-bottom: 30px;
     z-index: 1;
+	height: 113px;
 }
 
 .legend {
@@ -217,6 +220,16 @@
     height: 10px;
     margin-right: 5px;
 }
+
+.ui-select {
+  background:#fff;
+  position:absolute;
+  top:10px;
+  left:10px;
+  z-index:100;
+  padding:10px;
+  border-radius:3px;
+  }
 	
 </style>
 </head>
@@ -274,7 +287,7 @@
 				<br>
 				<h4>Select filter:</h4>
                 <div class="btn-group">
-				<form>
+				
                     <button data-toggle="dropdown" class="btn btn-primary dropdown">Building types</button>
                     <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" data-placeholder="false"><span class="caret"></span></button>
                     <ul class="dropdown-menu" style="padding-left:10px;">
@@ -292,7 +305,7 @@
                         <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'M Maatalousrakennukset\'');" />Maatalousrakennukset</li>
                         <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'N Muut rakennukset\'');" />Muut rakennukset</li>
                     </ul>
-				</form>
+				
                 </div>
                 <br>
                 <br>
@@ -306,13 +319,29 @@
 			<!--to show and hide layer buildings unnecessary???-->
 			<nav id="menu"></nav>		
 		</div>
+		
+			<div class='legend-container'>
+			  <div id='legend' class='legend'>
+				<h4>Year of construction</h4>
+			  </div>
+			</div>
+			
+			<div id='filtersss' class='ui-select'>
+			  <div><input type='checkbox' checked=checked class='filter'
+						 name='filter' id='fast-food' value='fast-food'/><label for='fast-food'>fast-food</label></div>
+			  <div><input type='checkbox' checked=checked class='filter'
+						 name='filter' id='bicycle' value='bicycle'/><label for='bicycle'>bicycle</label></div>
+			  <div><input type='checkbox' checked=checked class='filter'
+						 name='filter' id='bar' value='bar'/><label for='bar'>bar</label></div>
+			</div>
+	
 	</div>
 
-	<div class='legend-container'>
-	  <div id='legend' class='legend'>
-		<h4>Year of construction</h4>
-	  </div>
-	</div>
+
+	
+	
+	
+	
 <!-- possible footer -->
    <!-- <div class="container-fluid">
             <div id="footer">
@@ -349,14 +378,12 @@ var popup = new mapboxgl.Popup({
 // 2. State population value
 // 3. County population value
 var layers = [
-    ['#723122', 2013],
-    ['#8B4225', 2000],
-    ['#A25626', 1950],
-    ['#B86B25', 1900],
-    ['#CA8323', 1850],
-    ['#DA9C20', 1800],
-    ['#E6B71E', 1750],
-    ['#EED322', 1700]
+    ['#a50f15', 2000],
+    ['#de2d26', 1980],
+    ['#fb6a4a', 1950],
+    ['#fc9272', 1918],
+    ['#fcbba1', 1870],
+    ['#fee5d9', 1700]
    // ['#F2F12D', 0]
 ];
 
@@ -406,7 +433,7 @@ function renderChoropleth() {
     // Census data was added using http://censusreporter.org/
     map.addSource('buildings', {
         "type": "vector",
-        "url": "mapbox://gabrielaadamczyk.dui0bi44"
+        "url": "mapbox://gabrielaadamczyk.1wy6tioi"
     });
 
     layers.forEach(function(layer, i) {
@@ -481,7 +508,7 @@ map.on('mousemove', function(e) {
         // based on the feature found.
         popup.setLngLat(e.lngLat)
             .setHTML('<b>Year of construction: </b>' + details[facet] + 
-						'<br><b>Addres: </b>' + details["Address"] + 
+						'<br><b>Address: </b>' + details["Address"] + 
 						'<br><b>Type: </b>' + details["Intended_U"] +
 						'<br><b>Facade: </b>' + details["Facade"] +
 						'<br><b>Number of apartments: </b>' + details["Number_of"] +
@@ -539,7 +566,35 @@ map.on('mousemove', function(e) {
 			var layers = document.getElementById('menu');
 			layers.appendChild(link);
 		}
+ 
 
+	function handleBuildingtypes(checkbox, value) {
+        deleteMap();
+        rakennustyyppi.trim();
+        if (checkbox.checked) {
+            if (rakennustyyppi != '') {
+                rakennustyyppi = rakennustyyppi + ', ' + value;
+            }
+            else {
+                rakennustyyppi = rakennustyyppi + value;
+            }
+        }
+        else {
+            rakennustyyppi = rakennustyyppi.replace(', ' + value, value);
+            rakennustyyppi = rakennustyyppi.replace(value, '');
+        }
+
+        if (rakennustyyppi.startsWith(',') || rakennustyyppi.startsWith(' ')) {
+            rakennustyyppi = rakennustyyppi.substr(1);
+        }
+        var zoomi = googlemap.getZoom();
+        var centercoords = googlemap.getCenter();
+        updateDataLayer();
+        //update(zoomi, centercoords, mapType);
+    }
+		
+		
+		
   
 // Add zoom and rotation controls to the map
 		map.addControl(new mapboxgl.Navigation());		

@@ -54,24 +54,24 @@
 	}
 	
 	
-        .sidebar {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 250px;
-            bottom: 150;
-            overflow-x: auto;
-            background-color: #1d879f;
-            font-family: "Lucida Sans Unicode", Lucida Grande, sans-serif;
-            margin: 0;
-            padding: 5px;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 10px;
-            text-align: center;
-            z-index: 80;
-            
-        }
+    .sidebar {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 250px;
+        bottom: 150;
+        overflow-x: auto;
+        background-color: #1d879f;
+        font-family: "Lucida Sans Unicode", Lucida Grande, sans-serif;
+        margin: 0;
+        padding: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 10px;
+        text-align: center;
+        z-index: 80;
+       
+    }
 		
 	#slider {
         height: 10px;
@@ -80,23 +80,20 @@
     }
     #beginYear span {
         color: white;
-		font-size: 12px;
         }
     #beginSpan {
-        font-size: 11px;
+        font-size: 12px;
         font-weight: bold;
     }
     #endYear span {
         color: white;
-		font-size: 12px;
-		
     }
     #endSpan {
-        font-size: 11px;
+        font-size: 12px;
         font-weight: bold;
     }
 	
-<!--show and hide layer buildings unnecessary???
+<!--show and hide layer buildings unnecessary???-->
 	#menu {
         background: #fff;
         position: absolute;
@@ -108,7 +105,7 @@
         border: 1px solid rgba(0,0,0,0.4);
         font-family: 'Open Sans', sans-serif;
     }
-	#menu a {
+    #menu a {
         font-size: 13px;
         color: #404040;
         display: block;
@@ -134,104 +131,15 @@
         background: #3074a4;
     }
     
-
-
-        @media screen and (max-width:549px) {
-            h1 {
-                font-size: 24px;
-            }
-            .ol-toggle-options {
-                z-index: 1000;
-                position: absolute;
-                right: 7px;
-                bottom: 3px;
-            }
-            /* .btn{padding:5px 11px;} */
-            div span:last-of-type {
-                display: block;
-            }
-        }
-        @media screen and (min-width: 550px) and (max-width:800px) {
-            h1 {
-                font-size: 30px;
-            }
-            .ol-toggle-options {
-                z-index: 1000;
-                position: absolute;
-                right: 10px;
-                bottom: 10px;
-            }
-        }
-        /* iso naytto */
-        @media screen and (min-width: 801px) {
-            h1 {
-                font-size: 36px;
-            }
-            .ol-toggle-options {
-                z-index: 1000;
-                position: absolute;
-                right: 10px;
-                bottom: 15px;
-            }
-			
-	    .rakennustyyppiList
+            .rakennustyyppiList
         {
             color:black; 
             font-size:10px !important;
         }
-	
-        a:link {
-            color: black;
-            background-color: transparent;
-            text-decoration: none;
-        }
-        a:visited {
-            color: black;
-            background-color: transparent;
-            text-decoration: none;
-        }
-        a:hover {
-            color: black;
-            background-color: transparent;
-            text-decoration: underline;
-        }
-        a:active {
-            color: black;
-            background-color: transparent;
-            text-decoration: underline;
-        }
-	
-		/* this messes up something
-        .ol-toggle-options a {
-                background: rgba(255,255,255,0.5);
-                color: white;
-                display: block;
-                font-family: 'Lucida Grande',Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif;
-                font-size: 19px;
-                font-weight: bold;
-                height: 18px;
-                line-height: 11px;
-                margin: 1px;
-                padding: 0;
-                text-align: center;
-                text-decoration: none;
-                width: 55px;
-                border-radius: 2px;
-              }
-              .ol-toggle-options a:hover {
-                color: #fff;
-                text-decoration: none;
-                background: rgba(0,60,136,0.7);
-              } */
-			  
-/* erikokoisten nayttojen erot */
-
-        /* pieni naytto */
         @media screen and (max-width:549px) {
             h1 {
                 font-size: 24px;
             }
-
             .ol-toggle-options {
                 z-index: 1000;
                 position: absolute;
@@ -243,13 +151,10 @@
                 display: block;
             }
         }
-
-        /* keskikokoinen naytto */
         @media screen and (min-width: 550px) and (max-width:800px) {
             h1 {
                 font-size: 30px;
             }
-
             .ol-toggle-options {
                 z-index: 1000;
                 position: absolute;
@@ -262,17 +167,15 @@
             h1 {
                 font-size: 36px;
             }
-
             .ol-toggle-options {
                 z-index: 1000;
                 position: absolute;
                 right: 10px;
                 bottom: 15px;
             }
-        }
-		
-		
-		
+	
+	
+	
 </style>
 </head>
 <!--<body onload="init()">-->
@@ -288,7 +191,7 @@
 <!-- Header -->
 	<div class="container-fluid">
 		<div id="header">
-				<h2><span>Evolution of Helsinki</span></h2>
+				<h2><span>History of Helsinki</span></h2>
 		   
 			<div class="ol-toggle-options">  
 				<button class="btn btn-primary" title="Sivupalkki" onClick="toggleControlPanel()" href="#toggle">Menu</button>   
@@ -322,7 +225,7 @@
 				<input id='dark' type='radio' name='rtoggle' value='dark'>
 				<label for='dark'>dark</label><br> -->
 			</div>
-		</div>			
+			</div>	
 				<br>
                     <h4>Select filter:</h4>
                 <div class="btn-group">
@@ -342,28 +245,24 @@
                         <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'fire and rescue services building');" />fire and rescue services buildings</li>
                         <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'agricultural building');" />agricultural building</li>
                         <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'other');" />others</li>
-                    
-                    
-                    </ul>
+                     </ul>
                 </div>
                     <br>
                     <br>
                 <h4><link> Helsinki building data: </link> </h4>
                 <a href="http://www.hri.fi/fi/data/helsingin-kaupungin-rakennusrekisterin-ote-62012/">Helsingin kaupungin rakennusrekisterin ote 6/2012 </a>
                 <br>
-                <div id="nodelist">
+<!--                <div id="nodelist">
         		<em>Click on the map to get feature info</em>
     		</div>
-                <br>
+ -->               <br>
                 <h4> Developer team: </h4>Miska Kauppinen<br/>Gabriela Adamczyk<br/>Juhani Keskitalo<br />
 			</div>
-				
+			
 			<!--to show and hide layer buildings unnecessary???-->
 			<nav id="menu"></nav>		
 		</div>
 	</div>
-	
-
 	
 <!-- possible footer -->
    <!-- <div class="container-fluid">
@@ -383,7 +282,7 @@
 	
 //<!-- initializing a map -->
 	mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FicmllbGFhZGFtY3p5ayIsImEiOiJjaWpldzV6ZncwMDA1dnhtNG56OGdhc2FvIn0.jW6mw1QLlMkBLgpAH0NXqA';
-	
+
 	// Set bounds to Helsinki
 	var bounds = [
 		[22.959763, 59.645179], // Southwest coordinates
@@ -399,17 +298,16 @@
 		maxBounds: bounds
 	});
 	mapType = 'custom';
-
+	
 // Create a popup, but don't add it to the map yet.
 var popup = new mapboxgl.Popup({
     closeButton: false,
     closeOnClick: false
 });
 
-	
 	/*<!-- Adding layer -->*/
 		//L.mapbox.layer 
-		 var buildings = map.on('style.load', function () {
+		var buildings = map.on('style.load', function () {
 			map.addSource('buildings', {
 				type: 'vector',
 				url: 'mapbox://gabrielaadamczyk.f58b60d8'
@@ -429,36 +327,18 @@ var popup = new mapboxgl.Popup({
 		});
 		
 		addLayer('Buildings', 'buildings');
-		
-	//	addLayer('Buildings', 'buildings');
-		
-	//map.setLayerZoomRange('buildings', 6, 15);	
-
- 	function update(tvar) {
+ 	
+	function update(tvar) {
 		var ty = tvar
-		document.getElementById('nodelist').innerHTML = "here are the ty values: " + ty[0] +", " + ty[1]
-		
-		var rak_tyyppi = '';
-        if(rakennustyyppi != '')
-        {
-			rak_tyyppi = "['==','type'," + rakennustyyppi + "]"; 
-			//rak_tyyppi = " AND 'type' IN (" + rakennustyyppi + ")";
-			//rak_tyyppi = rakennustyyppi;
-			//["==","type", rak_tyyppi]
-			
-        }
-		//'<iframe seamless src="' + t + '"></iframe>';
+	//	document.getElementById('nodelist').innerHTML = "here are the ty values: " + ty[0] +", " + ty[1]//'<iframe seamless src="' + t + '"></iframe>';
 	//Here comes the setFilter-function... the upper shows just the sliders values in the sidebar
-		//setFilter("all", [">=","Year_of_co", ty[0]], ["<=","Year_of_co", ty[1]])
-		//setFilter("buildings", [[">=","Year_of_co", 1700], ["<=","Year_of_co", 1950]])//layer.setFilter(function() { return false; })
-		var x = map.getFilter('buildings')//, 'filter')
-		map.setLayerZoomRange ('buildings', 5, 12)
-		document.getElementById('nodelist').innerHTML += x
+	//	var x = map.getFilter('buildings')//, 'filter')
+	//	document.getElementById('nodelist').innerHTML += x
 		var b = parseFloat(ty[0])
 		var c = parseFloat(ty[1])
 		rakennustyyppi = $.trim(rakennustyyppi)
-		rakennustyyppi = rakennustyyppi.split(",")
 		
+		rakennustyyp = rakennustyyppi.split(",")
 		//var x = map.getFilter('buildings')
 		//document.getElementById('nodelist').innerHTML = "here are the filter values: " +'<br>' + x +'<br>' + rakennustyyppi
 		
@@ -470,7 +350,6 @@ var popup = new mapboxgl.Popup({
 			map.setFilter('buildings', ["all", [">=","Year_of_co", b], ["<=","Year_of_co", c], ["in","Intended_U", rakennustyyp[0],rakennustyyp[1],rakennustyyp[2],rakennustyyp[3],rakennustyyp[4],rakennustyyp[5],rakennustyyp[6],rakennustyyp[7],rakennustyyp[8],rakennustyyp[9],rakennustyyp[10],rakennustyyp[11]]])//'C Liikerakennukset', 'A Asuinrakennukset']])
 		}
         };
-        
 	$(document).ready(function () {
         var slider = document.getElementById('slider');
         sliderSet = noUiSlider.create(slider, {
@@ -504,10 +383,6 @@ var popup = new mapboxgl.Popup({
                 };
              
             }
-	
-//	document.getElementById('nodelist').innerHTML = "vaihto" + t
-	
-            //update(zoomi, centercoords, mapType);
         });
         slider.noUiSlider.on('update', function () {
             setDownBoarderhover();
@@ -532,9 +407,14 @@ var popup = new mapboxgl.Popup({
         setDownBoarderhover();
         setTopBoarderhover();
     }
+
+	
+// The key name that exists in each polygon properties
+// object we want to display
+
 		
 <!-- changing basemap -->	
-		var layerList = document.getElementById('sidebar');
+		var layerList = document.getElementById('baselayer');
 		var inputs = layerList.getElementsByTagName('input');
 		function switchLayer(layer) {
 			var layerId = layer.target.id;
@@ -566,7 +446,7 @@ var popup = new mapboxgl.Popup({
 			var layers = document.getElementById('menu');
 			layers.appendChild(link);
 		}
-
+<!--popups-->
 map.on('mousemove', function(e) {
     map.featuresAt(e.point, {
 		includeGeometry: true,
@@ -594,12 +474,13 @@ map.on('mousemove', function(e) {
             .addTo(map);
     });
 });
-      
-	  function handleBuildingtypes(checkbox, value) {
-        var x = map.getFilter('buildings')
+		
+  
+    function handleBuildingtypes(checkbox, value) {
+	var x = map.getFilter('buildings')
 	//document.getElementById('nodelist').innerHTML = "here are the filter values: " + x +'<br>' + value//'<iframe seamless src="' + t + '"></iframe>';
 	//map.setFilter('buildings', [x])
-        
+	
         //deleteMap();
         //rakennustyyppi.trim();
         rakennustyyppi = $.trim(rakennustyyppi)
@@ -627,13 +508,14 @@ map.on('mousemove', function(e) {
         //updateDataLayer();
         //update(zoomi, centercoords, mapType);
     }
-  
-// Add zoom and rotation controls to the map
+	
+	// Add zoom and rotation controls to the map
 		map.addControl(new mapboxgl.Navigation({position: 'bottom-left'}));		
 		
-// Add geocoder			
-//		map.addControl(new mapboxgl.Geocoder());
-//}
+	// Add geocoder			
+	//		map.addControl(new mapboxgl.Geocoder());
+	//}
+	
 </script>
 <script>
 <!-- Hiding the side panel -->		

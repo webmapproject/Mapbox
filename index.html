@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='utf-8' />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="apple-mobile-web-app-cabaple" content="yes"> 
-	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    
-	<title>History of Helsinki buildings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-cabaple" content="yes"> 
+	
+	<title>Evolution of Helsinki</title>
 	
 <!-- Mapbox script -->
 	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.4/mapbox-gl.js'></script>
@@ -15,14 +16,15 @@
 	<link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
 	
 <!-- Bootstarp scriptit -->
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 	 
-<!--own styles
-	<link rel="stylesheet" href="styles.css"> --> 
+<!--own styles--> 
+<!--	<link rel="stylesheet" href="styles.css"> 
+-->
 	<link href="nouislider.min.css" rel="stylesheet">
 		
  <style>
@@ -30,17 +32,15 @@
 	html, body {
 		overflow:hidden;
 		height:100%;
-		margin:100; 
-		padding:0;
 	}
 	
 	#header {
-/*	background-image: url("dark.png");*/
-		background-color:black;
+/*	background-image: url("dark.png");
+        background-color:black;*/
         color: white;
         text-align: center;
         font-family: "Lucida Sans Unicode", Lucida Grande, sans-serif;
-        position: fixed;
+        position: absolute;
         z-index: 50;
         right: 0;
         left: 0;
@@ -53,52 +53,51 @@
 		position:absolute;
 		left:0;
 	}
-
 	
 	
-    .sidebar {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 250px;
-        bottom: 150;
-        overflow-x: auto;
-        background-color: #1d879f;
-        font-family: "Lucida Sans Unicode", Lucida Grande, sans-serif;
-        margin: 0;
-        padding: 5px;
-        font-size: 14px;
-        font-weight: bold;
-        border-radius: 10px;
-        text-align: center;
-        z-index: 80;
-    }
+        .sidebar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 250px;
+            bottom: 150;
+            overflow-x: auto;
+            background-color: #1d879f;
+            font-family: "Lucida Sans Unicode", Lucida Grande, sans-serif;
+            margin: 0;
+            padding: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 80;
+            height: 650px;
+        }
 		
 	#slider {
-        height: 20px;
+        height: 10px;
         margin: 0 auto 30px;
         width: 500px;
     }
-
     #beginYear span {
         color: white;
+		font-size: 12px;
         }
-
     #beginSpan {
-        font-size: 12px;
+        font-size: 11px;
         font-weight: bold;
     }
-
     #endYear span {
         color: white;
+		font-size: 12px;
+		
     }
-
     #endSpan {
-        font-size: 12px;
+        font-size: 11px;
         font-weight: bold;
     }
 	
-<!--show and hide layer buildings unnecessary???-->
+<!--show and hide layer buildings unnecessary???
 	#menu {
         background: #fff;
         position: absolute;
@@ -110,8 +109,7 @@
         border: 1px solid rgba(0,0,0,0.4);
         font-family: 'Open Sans', sans-serif;
     }
-
-    #menu a {
+	#menu a {
         font-size: 13px;
         color: #404040;
         display: block;
@@ -122,26 +120,111 @@
         border-bottom: 1px solid rgba(0,0,0,0.25);
         text-align: center;
     }
-
     #menu a:last-child {
         border: none;
     }
-
     #menu a:hover {
         background-color: #f8f8f8;
         color: #404040;
     }
-
     #menu a.active {
         background-color: #3887be;
         color: #ffffff;
     }
-
     #menu a.active:hover {
         background: #3074a4;
-    }
+    }-->
+        @media screen and (max-width:549px) {
+            h1 {
+                font-size: 24px;
+            }
+            .ol-toggle-options {
+                z-index: 1000;
+                position: absolute;
+                right: 7px;
+                bottom: 3px;
+            }
+            /* .btn{padding:5px 11px;} */
+            div span:last-of-type {
+                display: block;
+            }
+        }
+        @media screen and (min-width: 550px) and (max-width:800px) {
+            h1 {
+                font-size: 30px;
+            }
+            .ol-toggle-options {
+                z-index: 1000;
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+            }
+        }
+        /* iso naytto */
+        @media screen and (min-width: 801px) {
+            h1 {
+                font-size: 36px;
+            }
+            .ol-toggle-options {
+                z-index: 1000;
+                position: absolute;
+                right: 10px;
+                bottom: 15px;
+            }
+			
+	    .rakennustyyppiList
+        {
+            color:black; 
+            font-size:10px !important;
+        }
+	
+        a:link {
+            color: black;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        a:visited {
+            color: black;
+            background-color: transparent;
+            text-decoration: none;
+        }
+        a:hover {
+            color: black;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        a:active {
+            color: black;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+	
+		/* this messes up something
+        .ol-toggle-options a {
+                background: rgba(255,255,255,0.5);
+                color: white;
+                display: block;
+                font-family: 'Lucida Grande',Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif;
+                font-size: 19px;
+                font-weight: bold;
+                height: 18px;
+                line-height: 11px;
+                margin: 1px;
+                padding: 0;
+                text-align: center;
+                text-decoration: none;
+                width: 55px;
+                border-radius: 2px;
+              }
+              .ol-toggle-options a:hover {
+                color: #fff;
+                text-decoration: none;
+                background: rgba(0,60,136,0.7);
+              } */
+			  
+/* erikokoisten nayttojen erot */
 
-
+        /* pieni naytto */
         @media screen and (max-width:549px) {
             h1 {
                 font-size: 24px;
@@ -159,7 +242,7 @@
             }
         }
 
-
+        /* keskikokoinen naytto */
         @media screen and (min-width: 550px) and (max-width:800px) {
             h1 {
                 font-size: 30px;
@@ -184,96 +267,50 @@
                 right: 10px;
                 bottom: 15px;
             }
-	
-	.rakennustyyppiList
-        {
-            color:black; 
-            font-size:10px !important;
         }
-	
-.legend-container {
-    position: absolute;
-    bottom: 30px;
-    left: 0;
-    padding: 10px;
-    margin-bottom: 30px;
-    z-index: 1;
-	height: 113px;
-}
-
-.legend {
-    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 3px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.10);
-}
-
-.legend h4 {
-    margin: 0 0 10px;
-}
-
-.legend-key {
-    display: inline-block;
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    margin-right: 5px;
-}
-
-.ui-select {
-  background:#fff;
-  position:absolute;
-  top:10px;
-  left:10px;
-  z-index:100;
-  padding:10px;
-  border-radius:3px;
-  }
-	
+		
+		
+		
 </style>
 </head>
-
-<body>	
-
+<!--<body onload="init()">-->
 <!-- Function scripts -->
 	<script src="nouislider.min.js"></script>
-<!-- 	<script src="map.js"></script> -->
-
+<!--	<script src="map.js"></script>
+-->
 <!-- Plugin to geocoder script -->
-	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v0.1.0/mapbox-gl-geocoder.js'></script>
+<!--	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v0.1.0/mapbox-gl-geocoder.js'></script>
 	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v0.1.0/mapbox-gl-geocoder.css' type='text/css' />
-
+-->
 	<div id='map'></div>
-
 <!-- Header -->
 	<div class="container-fluid">
 		<div id="header">
-				<h2><span>History of Helsinki</span></h2>
+				<h2><span>Evolution of Helsinki</span></h2>
 		   
 			<div class="ol-toggle-options">  
 				<button class="btn btn-primary" title="Sivupalkki" onClick="toggleControlPanel()" href="#toggle">Menu</button>   
 			</div>
-		<!--	<div class='map-overlay top'>
-				<div class='map-overlay-inner'>
-					<!--<h2>Years</h2>
-					<label id='month'></label>
-					<input id='slider' type='range' min='1700' max='2013' step='1' value='0' />
-				</div>
-				<div class='map-overlay-inner'>
-				</div>
-			</div> -->
+			<div id="slider"></div>
+			<div style="height:20px;"></div>
+			
 		</div>	
 		
 <!-- changing basemap -->	
 		<div id='sidebar' class='sidebar' style="display: none;">
 			<button class="btn btn-primary" title="Sivupalkki" onClick="toggleControlPanel()" href="#toggle">Hide menu</button>
+			<div id='baselayer' class='baselayer'>
 			<div style="text-align: left; margin-left:1%;">
 				<h4> Select basemap: </h4>
-				<input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
-				<label for='basic'>basic</label><br>
 				<input id='streets' type='radio' name='rtoggle' value='streets'>
 				<label for='streets'>streets</label><br>
+				<input id='satellite' type='radio' name='rtoggle' value='satellite'>
+				<label for='satellite'>satellite</label><br>
+				<input id='dark' type='radio' name='rtoggle' value='dark'>
+				<label for='dark'>dark</label><br>
+				
+			<!--	<input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
+				<label for='basic'>basic</label><br>
 				<input id='emerald' type='radio' name='rtoggle' value='emerald'>
 				<label for='emerald'>emerald</label><br>
 				<input id='bright' type='radio' name='rtoggle' value='bright'>
@@ -281,66 +318,48 @@
 				<input id='light' type='radio' name='rtoggle' value='light'>
 				<label for='light'>light</label><br>
 				<input id='dark' type='radio' name='rtoggle' value='dark'>
-				<label for='dark'>dark</label><br>
-				<input id='satellite' type='radio' name='rtoggle' value='satellite'>
-				<label for='satellite'>satellite</label>
+				<label for='dark'>dark</label><br> -->
+			</div>
+		</div>			
 				<br>
-				<h4>Select filter:</h4>
-                <div class="btn-group">
-				
+                    <h4>Select filter:</h4>
+                <div  class="btn-group">
                     <button data-toggle="dropdown" class="btn btn-primary dropdown">Building types</button>
                     <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" data-placeholder="false"><span class="caret"></span></button>
-                    <ul class="dropdown-menu" style="padding-left:10px;">
-                        <li class="rakennustyyppiList"><input type="checkbox" onclick="handleBuildingtypes(this, '\'A Asuinrakennukset\'');" />Asuinrakennukset</li>
-                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'B Vapaa-ajan asuinrakennukset\'');" />Vapaa-ajan asuinrakennukset</li>
-                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'C Liikerakennukset\'');" />Liikerakennukset</li>
-                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'D Toimistorakennukset\'');" />Toimistorakennukset</li>
-                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'E Liikenteen rakennukset\'');" />Liikenteen rakennukset</li>
-                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'F Hoitoalan rakennukset\'');" />Hoitoalan rakennukset</li>
-                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'G Kokoontumisrakennukset\'');" />Kokoontumisrakennukset</li>
-                        <li class="rakennustyyppiList"><input type="checkbox" onclick="handleBuildingtypes(this, '\'H Opetusrakennukset\'');" />Opetusrakennukset</li>
-                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'J Teollisuusrakennukset\'');" />Teollisuusrakennukset</li>
-                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'K Varastorakennukset\'');" />Varastorakennukset</li>
-                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'L Palo- ja pelastustoimen rakennukset\'');" />Palo- ja pelastustoimen rakennukset</li>
-                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'M Maatalousrakennukset\'');" />Maatalousrakennukset</li>
-                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, '\'N Muut rakennukset\'');" />Muut rakennukset</li>
+                    <br><br>
+					<ul class="dropdown-menu"  style="padding-left:10px;"> <!---->
+                        <li class="rakennustyyppiList"><input type="checkbox" onclick="handleBuildingtypes(this, 'residential building');" />residential buildings</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'free-time residence');" />free-time residences</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'commercial building');" />commercial buildings</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'office building');" />office buildings</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'trafficl building');" />trafficl buildings</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'institutional building');" />institutional buildings</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'assembly building');" />assembly buildings</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'educational building');" />educational buildings</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'industrial building');" />industrial buildings</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'storage building');" />storage buildings</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'fire and rescue services building');" />fire and rescue services buildings</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'agricultural building');" />agricultural building</li>
+                        <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'other');" />others</li>
                     </ul>
-				
                 </div>
-                <br>
-                <br>
+                    <br>
                 <h4><link> Helsinki building data: </link> </h4>
                 <a href="http://www.hri.fi/fi/data/helsingin-kaupungin-rakennusrekisterin-ote-62012/">Helsingin kaupungin rakennusrekisterin ote 6/2012 </a>
                 <br>
+                
                 <br>
                 <h4> Developer team: </h4>Miska Kauppinen<br/>Gabriela Adamczyk<br/>Juhani Keskitalo<br />
 			</div>
-			
-			<!--to show and hide layer buildings unnecessary???-->
-			<nav id="menu"></nav>		
+				<div id="nodelist">
+        		<em>Click on the map to get feature info</em>
+    		</div>
+			<!--to show and hide layer buildings unnecessary???
+			<nav id="menu"></nav>-->		
 		</div>
-		
-			<div class='legend-container'>
-			  <div id='legend' class='legend'>
-				<h4>Year of construction</h4>
-			  </div>
-			</div>
-			
-			<div id='filtersss' class='ui-select'>
-			  <div><input type='checkbox' checked=checked class='filter'
-						 name='filter' id='fast-food' value='fast-food'/><label for='fast-food'>fast-food</label></div>
-			  <div><input type='checkbox' checked=checked class='filter'
-						 name='filter' id='bicycle' value='bicycle'/><label for='bicycle'>bicycle</label></div>
-			  <div><input type='checkbox' checked=checked class='filter'
-						 name='filter' id='bar' value='bar'/><label for='bar'>bar</label></div>
-			</div>
-	
 	</div>
+	
 
-
-	
-	
-	
 	
 <!-- possible footer -->
    <!-- <div class="container-fluid">
@@ -348,151 +367,200 @@
                 <p> Web Map Project</p>
             </div>
         </div> -->
-
-
 		
 <script>
-
-mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FicmllbGFhZGFtY3p5ayIsImEiOiJjaWpldzV6ZncwMDA1dnhtNG56OGdhc2FvIn0.jW6mw1QLlMkBLgpAH0NXqA';
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/dark-v8',
-    center: [24.980367, 60.192829],
-    zoom: 11.2
-});
-
-// The key name that exists in each polygon properties
-// object we want to display
-var facet = 'Year_of_co';
-
-// Show the state choropleth first
-var level = 'Address';
+	var map; 
+    var sliderSet;
+    var mapType;
+    var mapOptions;
+    var mapstyles;
+    var rakennustyyppi;
+    var t;
+	
+//<!-- initializing a map -->
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FicmllbGFhZGFtY3p5ayIsImEiOiJjaWpldzV6ZncwMDA1dnhtNG56OGdhc2FvIn0.jW6mw1QLlMkBLgpAH0NXqA';
+	
+	// Set bounds to Helsinki
+	var bounds = [
+		[22.959763, 59.645179], // Southwest coordinates
+		[26.322158, 60.762012]  // Northeast coordinates
+	];
+	
+	var map = new mapboxgl.Map({
+	    container: 'map',
+	    
+		style: 'mapbox://styles/mapbox/dark-v8',
+		center: [25.046303, 60.231984],
+		zoom: 10.25,
+		maxBounds: bounds
+	});
+	mapType = 'custom';
 
 // Create a popup, but don't add it to the map yet.
 var popup = new mapboxgl.Popup({
-    closeButton: false
+    closeButton: false,
+    closeOnClick: false
 });
 
-// The values in each array are:
-// 1. Color of choropleth
-// 2. State population value
-// 3. County population value
-var layers = [
-    ['#a50f15', 2000],
-    ['#de2d26', 1980],
-    ['#fb6a4a', 1950],
-    ['#fc9272', 1918],
-    ['#fcbba1', 1870],
-    ['#fee5d9', 1700]
-   // ['#F2F12D', 0]
-];
+	
+	/*<!-- Adding layer -->*/
+		//L.mapbox.layer 
+		 map.on('style.load', function () {
+			map.addSource('buildings', {
+				type: 'vector',
+				url: 'mapbox://gabrielaadamczyk.f58b60d8'
+			});
+			map.addLayer({
+				'id': 'buildings',
+				"interactive": true,
+				'type': 'fill',
+				'source': 'buildings',
+				//'filter': ["all", [">=","Year_of_co", 1700], ["<=","Year_of_co", 2013]],
+				'paint': {
+					"fill-color": '#088',//"#d44242",
+					"fill-opacity": 0.5
+				},
+				'source-layer': 'buildings'
+			});
+		});
+		
+	//	addLayer('Buildings', 'buildings');
+		
+	//map.setLayerZoomRange('buildings', 6, 15);	
 
-function filterBy(type) {
-    // Which value in each layers array
-    // should be used for filtering.
-    var position = type === 'Address' ? 1 : 2;
-
-    layers.forEach(function(layer, i) {
-        var filters = [
-            'all',
-            ['>=', facet, layer[position]],
-            // Does a state or county property (depending on `type`)
-            // Exist in a given feature? Just show those:
-            ['!=', type, undefined]
-        ];
-
-        if (i !== 0) filters.push(['<', facet, layers[i - 1][position]]);
-        map.setFilter('layer-' + i, filters);
-
-        // Set the legend value for each layer
-        document.getElementById('legend-value-' + i).textContent = layer[position];
-    });
-}
-
-function renderChoropleth() {
-    var legend = document.getElementById('legend');
-
-    // Here we pull a vector tile source that makes
-    // up our choropleth. The source was uploaded as
-    // a GeoJSON document and converted to a a vector
-    // tile with property data that looks like this:
-    //
-    // {
-    //    "name": "California"
-    //    "population": 38802500
-    //    "state": 06
-    // },
-    // {
-    //    "county": 06037
-    //    "name": "Los Angeles County"
-    //    "population": 9974203
-    // }
-    // ... etc.
-    //
-    // Polygon data was added using https://github.com/mbostock/us-atlas
-    // Census data was added using http://censusreporter.org/
-    map.addSource('buildings', {
-        "type": "vector",
-        "url": "mapbox://gabrielaadamczyk.1wy6tioi"
-    });
-
-    layers.forEach(function(layer, i) {
-        map.addLayer({
-            "id": "layer-" + i,
-            "interactive": true,
-            "type": "fill",
-            "source": "buildings",
-            "source-layer": "buildings",
-            "paint": {
-                "fill-color": layer[0],
-                "fill-opacity": 0.75
-            }
+ 	function update(tvar) {
+		var ty = tvar
+		document.getElementById('nodelist').innerHTML = "here are the ty values: " + ty[0] +", " + ty[1]
+		
+		var rak_tyyppi = '';
+        if(rakennustyyppi != '')
+        {
+			rak_tyyppi = "['==','type'," + rakennustyyppi + "]"; 
+			//rak_tyyppi = " AND 'type' IN (" + rakennustyyppi + ")";
+			//rak_tyyppi = rakennustyyppi;
+			//["==","type", rak_tyyppi]
+			
         }
-		//,'place_label_city_small_s'//
-		);
+		//'<iframe seamless src="' + t + '"></iframe>';
+	//Here comes the setFilter-function... the upper shows just the sliders values in the sidebar
+		//setFilter("all", [">=","Year_of_co", ty[0]], ["<=","Year_of_co", ty[1]])
+		//setFilter("buildings", [[">=","Year_of_co", 1700], ["<=","Year_of_co", 1950]])//layer.setFilter(function() { return false; })
+		var x = map.getFilter('buildings')//, 'filter')
+		//map.setLayerZoomRange ('buildings', 6, 16)
+		document.getElementById('nodelist').innerHTML += x
+		var b = parseFloat(ty[0])
+		var c = parseFloat(ty[1])
+		map.setFilter('buildings', ["all", [">=","Year_of_co", b], ["<=","Year_of_co", c], rak_tyyppi])
+		
+	//	map.buildings.setFilter(function (f) {
+	//		return f.properties['Year_of_co' ] >= ty[0] || f.properties['Year_of_co' ] <= ty[1]
+	//	});
+		//"all", [">=","Year_of_co", ty[0]], ["<=","Year_of_co", ty[1]])
+        };
+        //return false;
+	//var t = sliderSet.get();
 
-        // Build out legends
-        var item = document.createElement('div');
-
-        var key = document.createElement('span');
-        key.className = 'legend-key';
-        key.style.backgroundColor = layer[0];
-
-        var value = document.createElement('span');
-        value.id = 'legend-value-' + i;
-
-        item.appendChild(key);
-        item.appendChild(value);
-        legend.appendChild(item);
+/*copy from the nouislider before layer*/
+	$(document).ready(function () {
+        var slider = document.getElementById('slider');
+        sliderSet = noUiSlider.create(slider, {
+            start: [1800, 2013], // Handle start position
+            //step: 10, // Slider moves in increments of '10'
+            margin: 1, // Handles must be more than '20' apart
+            connect: true, // Display a colored bar between the handles
+            direction: 'ltr', // Put '0' at the bottom of the slider
+            orientation: 'horizontal', // Orient the slider vertically
+            behaviour: 'tap-drag', // Move handle on tap, bar is draggable
+            range: { // Slider can select '0' to '100'
+            	// t is min and max when hovering
+                'min': 1800,
+                'max': 2013
+            },
+            pips: { // Show a scale with the slider
+                mode: 'steps',
+                density: 2
+            }
+        });
+        slider.noUiSlider.on('change', function () {
+            var zoomi = map.getZoom();
+            var centercoords = map.getCenter();
+            var t = sliderSet.get();
+	    update(t);
+            if (mapType == 'custom') {
+                mapOptions = {
+                    center: centercoords,
+                    zoom: zoomi,
+                    styles: mapstyles
+                };
+             
+            }
+	
+//	document.getElementById('nodelist').innerHTML = "vaihto" + t
+	
+            //update(zoomi, centercoords, mapType);
+        });
+        slider.noUiSlider.on('update', function () {
+            setDownBoarderhover();
+            setTopBoarderhover();
+        });
     });
-
-    // Initially filter this by the state level
-    filterBy(level);
-}
-
-map.on('style.load', renderChoropleth);
-
-/*map.on('move', function(e) {
-    var z = e.target.getZoom();
-
-    if (z > 4 && level !== 'county') {
-        level = 'county';
-        filterBy(level);
+    function setDownBoarderhover() {
+        $('.noUi-handle-lower').children().remove('div');
+        var t = sliderSet.get();
+        
+//        document.getElementById('nodelist').innerHTML = "jotain" + t//'<iframe seamless src="' + t + '"></iframe>';
+        
+        
+        $('.noUi-handle-lower').append('<div id="beginYear"><br/><br/><span id="beginSpan">' + Math.round(t[0]) + '</span></div>');
     }
-
-    if (z <= 4 && level !== 'state') {
-        level = 'state';
-        filterBy(level);
+    function setTopBoarderhover() {
+        $('.noUi-handle-upper').children().remove('div');
+        var t = sliderSet.get();
+        $('.noUi-handle-upper').append('<div id="endYear"><br/><br/><span id="endSpan">' + Math.round(t[1]) + '</span></div>');
     }
-});*/
+    function setBoarders() {
+        setDownBoarderhover();
+        setTopBoarderhover();
+    }
+		
+<!-- changing basemap -->	
+		var layerList = document.getElementById('sidebar');
+		var inputs = layerList.getElementsByTagName('input');
+		function switchLayer(layer) {
+			var layerId = layer.target.id;
+			map.setStyle('mapbox://styles/mapbox/' + layerId + '-v8');
+		}
+		for (var i = 0; i < inputs.length; i++) {
+			inputs[i].onclick = switchLayer;
+		}
+	
+	
+<!--show and hide layer buildings unnecessary???-->		
+	/*	function addLayer(name, id) {
+			var link = document.createElement('a');
+			link.href = '#';
+			link.className = 'active';
+			link.textContent = name;
+			link.onclick = function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+				var visibility = map.getLayoutProperty(id, 'visibility');
+				if (visibility === 'visible') {
+					map.setLayoutProperty(id, 'visibility', 'none');
+					this.className = '';
+				} else {
+					this.className = 'active';
+					map.setLayoutProperty(id, 'visibility', 'visible');
+				}
+			};
+			var layers = document.getElementById('menu');
+			layers.appendChild(link);
+		}*/
 
 map.on('mousemove', function(e) {
     map.featuresAt(e.point, {
-
-        // Collect each layer id we created into an array.
-        layer: layers.map(function(layer, i) {
-            return 'layer-' + i;
-        })
+		includeGeometry: true,
+        layer: 'buildings'
     }, function(err, features) {
         // Change the cursor style as a UI indicator.
         map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
@@ -504,10 +572,10 @@ map.on('mousemove', function(e) {
 
         var details = features[0].properties;
 
-        // Initialize a popup and set its coordinates
+        // Popuplate the popup and set its coordinates
         // based on the feature found.
         popup.setLngLat(e.lngLat)
-            .setHTML('<b>Year of construction: </b>' + details[facet] + 
+            .setHTML('<b>Year of construction: </b>' + details["Year_of_co"] + 
 						'<br><b>Address: </b>' + details["Address"] + 
 						'<br><b>Type: </b>' + details["Intended_U"] +
 						'<br><b>Facade: </b>' + details["Facade"] +
@@ -516,59 +584,8 @@ map.on('mousemove', function(e) {
             .addTo(map);
     });
 });
-
-		
-<!-- changing basemap -->	
-		var layerList = document.getElementById('sidebar');
-		var inputs = layerList.getElementsByTagName('input');
-
-		function switchLayer(layer) {
-			var layerId = layer.target.id;
-			map.setStyle('mapbox://styles/mapbox/' + layerId + '-v8');
-		}
-		for (var i = 0; i < inputs.length; i++) {
-			inputs[i].onclick = switchLayer;
-		}
-		
-<!-- Hiding the side panel -->		
-		function toggleControlPanel(){
-        var sidebar = document.getElementById("sidebar");
-        if (sidebar.style.display == "none") {
-          sidebar.style.display = "block";
-        }
-        else {
-          sidebar.style.display = "none";
-        }
-		}
-
-<!--show and hide layer buildings unnecessary???-->		
-		function addLayer(name, id) {
-			var link = document.createElement('a');
-			link.href = '#';
-			link.className = 'active';
-			link.textContent = name;
-
-			link.onclick = function (e) {
-				e.preventDefault();
-				e.stopPropagation();
-
-				var visibility = map.getLayoutProperty(id, 'visibility');
-
-				if (visibility === 'visible') {
-					map.setLayoutProperty(id, 'visibility', 'none');
-					this.className = '';
-				} else {
-					this.className = 'active';
-					map.setLayoutProperty(id, 'visibility', 'visible');
-				}
-			};
-
-			var layers = document.getElementById('menu');
-			layers.appendChild(link);
-		}
- 
-
-	function handleBuildingtypes(checkbox, value) {
+      
+	  function handleBuildingtypes(checkbox, value) {
         deleteMap();
         rakennustyyppi.trim();
         if (checkbox.checked) {
@@ -587,23 +604,31 @@ map.on('mousemove', function(e) {
         if (rakennustyyppi.startsWith(',') || rakennustyyppi.startsWith(' ')) {
             rakennustyyppi = rakennustyyppi.substr(1);
         }
-        var zoomi = googlemap.getZoom();
-        var centercoords = googlemap.getCenter();
+        var zoomi = map.getZoom();
+        var centercoords = map.getCenter();
         updateDataLayer();
-        //update(zoomi, centercoords, mapType);
+        update(zoomi, centercoords, mapType);
     }
-		
-		
-		
   
 // Add zoom and rotation controls to the map
-		map.addControl(new mapboxgl.Navigation());		
+		map.addControl(new mapboxgl.Navigation({position: 'bottom-left'}));		
 		
-
 // Add geocoder			
-		map.addControl(new mapboxgl.Geocoder());
-
-
+//		map.addControl(new mapboxgl.Geocoder());
+//}
+</script>
+<script>
+<!-- Hiding the side panel -->		
+		function toggleControlPanel(){
+        var sidebar = document.getElementById("sidebar");
+        if (sidebar.style.display == "none") {
+          sidebar.style.display = "block";
+        }
+        else {
+          sidebar.style.display = "none";
+        }
+		}
+		
 </script>
 </body>
 </html>

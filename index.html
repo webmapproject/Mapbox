@@ -71,7 +71,7 @@
             border-radius: 10px;
             text-align: center;
             z-index: 80;
-            height: 650px;
+            
         }
 		
 	#slider {
@@ -133,7 +133,10 @@
     }
     #menu a.active:hover {
         background: #3074a4;
-    }-->
+    }
+    
+
+
         @media screen and (max-width:549px) {
             h1 {
                 font-size: 24px;
@@ -340,21 +343,24 @@
                         <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'fire and rescue services building');" />fire and rescue services buildings</li>
                         <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'agricultural building');" />agricultural building</li>
                         <li class="rakennustyyppiList"><input type="checkbox"  onclick="handleBuildingtypes(this, 'other');" />others</li>
+                    
+                    
                     </ul>
                 </div>
+                    <br>
                     <br>
                 <h4><link> Helsinki building data: </link> </h4>
                 <a href="http://www.hri.fi/fi/data/helsingin-kaupungin-rakennusrekisterin-ote-62012/">Helsingin kaupungin rakennusrekisterin ote 6/2012 </a>
                 <br>
-                
+                <div id="nodelist">
+        		<em>Click on the map to get feature info</em>
+    		</div>
                 <br>
                 <h4> Developer team: </h4>Miska Kauppinen<br/>Gabriela Adamczyk<br/>Juhani Keskitalo<br />
 			</div>
-				<div id="nodelist">
-        		<em>Click on the map to get feature info</em>
-    		</div>
-			<!--to show and hide layer buildings unnecessary???
-			<nav id="menu"></nav>-->		
+				
+			<!--to show and hide layer buildings unnecessary???-->
+			<nav id="menu"></nav>		
 		</div>
 	</div>
 	
@@ -404,7 +410,7 @@ var popup = new mapboxgl.Popup({
 	
 	/*<!-- Adding layer -->*/
 		//L.mapbox.layer 
-		 map.on('style.load', function () {
+		 var buildings = map.on('style.load', function () {
 			map.addSource('buildings', {
 				type: 'vector',
 				url: 'mapbox://gabrielaadamczyk.f58b60d8'
@@ -414,7 +420,7 @@ var popup = new mapboxgl.Popup({
 				"interactive": true,
 				'type': 'fill',
 				'source': 'buildings',
-				//'filter': ["all", [">=","Year_of_co", 1700], ["<=","Year_of_co", 2013]],
+				'filter': ["all", [">=","Year_of_co", 1700], ["<=","Year_of_co", 2013]],
 				'paint': {
 					"fill-color": '#088',//"#d44242",
 					"fill-opacity": 0.5
@@ -422,6 +428,8 @@ var popup = new mapboxgl.Popup({
 				'source-layer': 'buildings'
 			});
 		});
+		
+		addLayer('Buildings', 'buildings');
 		
 	//	addLayer('Buildings', 'buildings');
 		
@@ -445,21 +453,25 @@ var popup = new mapboxgl.Popup({
 		//setFilter("all", [">=","Year_of_co", ty[0]], ["<=","Year_of_co", ty[1]])
 		//setFilter("buildings", [[">=","Year_of_co", 1700], ["<=","Year_of_co", 1950]])//layer.setFilter(function() { return false; })
 		var x = map.getFilter('buildings')//, 'filter')
-		//map.setLayerZoomRange ('buildings', 6, 16)
+		map.setLayerZoomRange ('buildings', 5, 12)
 		document.getElementById('nodelist').innerHTML += x
 		var b = parseFloat(ty[0])
 		var c = parseFloat(ty[1])
-		map.setFilter('buildings', ["all", [">=","Year_of_co", b], ["<=","Year_of_co", c], rak_tyyppi])
+		rakennustyyppi = $.trim(rakennustyyppi)
+		rakennustyyppi = rakennustyyppi.split(",")
 		
-	//	map.buildings.setFilter(function (f) {
-	//		return f.properties['Year_of_co' ] >= ty[0] || f.properties['Year_of_co' ] <= ty[1]
-	//	});
-		//"all", [">=","Year_of_co", ty[0]], ["<=","Year_of_co", ty[1]])
+		//var x = map.getFilter('buildings')
+		//document.getElementById('nodelist').innerHTML = "here are the filter values: " +'<br>' + x +'<br>' + rakennustyyppi
+		
+		
+		if (rakennustyyppi == "") {
+			map.setFilter('buildings', ["all", [">=","Year_of_co", b], ["<=","Year_of_co", c]])
+		} else {
+			
+			map.setFilter('buildings', ["all", [">=","Year_of_co", b], ["<=","Year_of_co", c], ["in","Intended_U", rakennustyyp[0],rakennustyyp[1],rakennustyyp[2],rakennustyyp[3],rakennustyyp[4],rakennustyyp[5],rakennustyyp[6],rakennustyyp[7],rakennustyyp[8],rakennustyyp[9],rakennustyyp[10],rakennustyyp[11]]])//'C Liikerakennukset', 'A Asuinrakennukset']])
+		}
         };
-        //return false;
-	//var t = sliderSet.get();
-
-/*copy from the nouislider before layer*/
+        
 	$(document).ready(function () {
         var slider = document.getElementById('slider');
         sliderSet = noUiSlider.create(slider, {
@@ -535,7 +547,7 @@ var popup = new mapboxgl.Popup({
 	
 	
 <!--show and hide layer buildings unnecessary???-->		
-	/*	function addLayer(name, id) {
+		function addLayer(name, id) {
 			var link = document.createElement('a');
 			link.href = '#';
 			link.className = 'active';
@@ -554,7 +566,7 @@ var popup = new mapboxgl.Popup({
 			};
 			var layers = document.getElementById('menu');
 			layers.appendChild(link);
-		}*/
+		}
 
 map.on('mousemove', function(e) {
     map.featuresAt(e.point, {
@@ -585,28 +597,36 @@ map.on('mousemove', function(e) {
 });
       
 	  function handleBuildingtypes(checkbox, value) {
-        deleteMap();
-        rakennustyyppi.trim();
+        var x = map.getFilter('buildings')
+	//document.getElementById('nodelist').innerHTML = "here are the filter values: " + x +'<br>' + value//'<iframe seamless src="' + t + '"></iframe>';
+	//map.setFilter('buildings', [x])
+        
+        //deleteMap();
+        //rakennustyyppi.trim();
+        rakennustyyppi = $.trim(rakennustyyppi)
         if (checkbox.checked) {
             if (rakennustyyppi != '') {
-                rakennustyyppi = rakennustyyppi + ', ' + value;
+                rakennustyyppi = rakennustyyppi + ',' + value;
             }
             else {
                 rakennustyyppi = rakennustyyppi + value;
+                //rakennustyyppi = value+"865";
             }
         }
         else {
-            rakennustyyppi = rakennustyyppi.replace(', ' + value, value);
+            rakennustyyppi = rakennustyyppi.replace(',' + value, value);
             rakennustyyppi = rakennustyyppi.replace(value, '');
         }
-
         if (rakennustyyppi.startsWith(',') || rakennustyyppi.startsWith(' ')) {
             rakennustyyppi = rakennustyyppi.substr(1);
         }
-        var zoomi = map.getZoom();
-        var centercoords = map.getCenter();
-        updateDataLayer();
-        update(zoomi, centercoords, mapType);
+        //document.getElementById('nodelist').innerHTML += '<br><br>' + rakennustyyppi
+        var t = sliderSet.get();
+	update(t);
+        //var zoomi = googlemap.getZoom();
+        //var centercoords = googlemap.getCenter();
+        //updateDataLayer();
+        //update(zoomi, centercoords, mapType);
     }
   
 // Add zoom and rotation controls to the map

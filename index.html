@@ -35,7 +35,8 @@
 	
 	#header {
 /*	background-image: url("dark.png");
-        background-color:black;*/
+        background-color: black;
+        opacity: 0.5
         color: white;
         text-align: center;
         font-family: "Lucida Sans Unicode", Lucida Grande, sans-serif;
@@ -74,7 +75,7 @@
         }
 		
 	#slider {
-        height: 10px;
+        height: 8px;
         margin: 0 auto 30px;
         width: 500px;
     }
@@ -211,12 +212,13 @@
                     		<br>
 
 				<h4> Select basemap: </h4>
+				<input id='dark' type='radio' name='rtoggle' value='dark' checked='checked'>
+				<label for='dark'>dark</label><br>
 				<input id='light' type='radio' name='rtoggle' value='light'>
 				<label for='light'>light</label><br>
 				<input id='satellite' type='radio' name='rtoggle' value='satellite'>
 				<label for='satellite'>satellite</label><br>
-				<input id='dark' type='radio' name='rtoggle' value='dark' checked='checked'>
-				<label for='dark'>dark</label><br>
+				
 				
 			<!--	<input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
 				<label for='basic'>basic</label><br>
